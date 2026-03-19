@@ -1,30 +1,23 @@
-import { BookOpen, Clock, Users, Star, Play, Code2, CheckCircle2, Lock, ArrowLeft, Trophy, Brain } from 'lucide-react'
+import { BookOpen, Clock, Users, Star, Play, Code2, CheckCircle2, ArrowLeft, Trophy, Brain, FileText, HelpCircle, Beaker } from 'lucide-react'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import { getCourseById, getAllLessons } from '@/lib/courseData'
 
-const courseData = {
-  title: 'React Mastery: Interactive Components',
-  desc: 'Build production-ready React apps with hands-on exercises and live code sandboxes. Master hooks, state management, and advanced patterns.',
-  level: 'Intermediate',
-  duration: '12h',
-  students: 2340,
-  rating: 4.9,
-  modules: 24,
-  xp: 2400,
-  instructor: 'Dr. Vidya Sharma',
+const typeIcons: Record<string, string> = {
+  video: '▶',
+  reading: '📖',
+  quiz: '❓',
+  exercise: '💻',
+  lab: '🧪',
 }
-
-const curriculum = [
-  { id: 1, title: 'React Fundamentals', lessons: 4, duration: '1.5h', completed: true, hasLab: true },
-  { id: 2, title: 'Hooks Deep Dive', lessons: 5, duration: '2h', completed: true, hasLab: true },
-  { id: 3, title: 'State Management Patterns', lessons: 4, duration: '1.5h', completed: false, hasLab: true },
-  { id: 4, title: 'Component Architecture', lessons: 3, duration: '1h', completed: false, hasLab: false },
-  { id: 5, title: 'Performance Optimization', lessons: 4, duration: '2h', completed: false, hasLab: true },
-  { id: 6, title: 'Testing & Best Practices', lessons: 4, duration: '2h', completed: false, hasLab: true },
-  { id: 7, title: 'Final Project: Build a Dashboard', lessons: 2, duration: '2h', completed: false, hasLab: true },
-]
 
 export default async function CourseDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
+  const course = getCourseById(Number(id))
+  if (!course) return notFound()
+  const allLessons = getAllLessons(course.id)
+  const totalXp = allLessons.reduce((sum, l) => sum + l.xp, 0)
+
   return (
     <main className="min-h-screen">
       <nav className="flex items-center justify-between px-6 md:px-12 py-4 border-b border-white/10 backdrop-blur-md sticky top-0 z-50">
@@ -34,8 +27,7 @@ export default async function CourseDetail({ params }: { params: Promise<{ id: s
         </Link>
         <div className="hidden md:flex items-center gap-6 text-sm text-slate-400">
           <Link href="/courses" className="hover:text-white transition">Courses</Link>
-          <Link href="#" className="hover:text-white transition">My Learning</Link>
-          <Link href="#" className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-white transition font-medium">Sign In</Link>
+          <Link href="/dashboard" className="hover:text-white transition">Dashboard</Link>
         </div>
       </nav>
 
@@ -45,64 +37,70 @@ export default async function CourseDetail({ params }: { params: Promise<{ id: s
         </Link>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Main Content */}
           <div className="lg:col-span-2">
-            <div className="mb-6">
-              <span className="text-xs px-2.5 py-1 rounded-full border bg-yellow-500/20 text-yellow-400 border-yellow-500/30">{courseData.level}</span>
-            </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">{courseData.title}</h1>
-            <p className="text-slate-400 text-lg mb-6">{courseData.desc}</p>
+            <span className="text-xs px-2.5 py-1 rounded-full border bg-yellow-500/20 text-yellow-400 border-yellow-500/30">{course.level}</span>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mt-3 mb-4">{course.title}</h1>
+            <p className="text-slate-400 text-lg mb-6">{course.about}</p>
+
             <div className="flex flex-wrap items-center gap-6 text-sm text-slate-400 mb-8">
-              <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> {courseData.duration}</span>
-              <span className="flex items-center gap-1.5"><BookOpen className="w-4 h-4" /> {courseData.modules} modules</span>
-              <span className="flex items-center gap-1.5"><Users className="w-4 h-4" /> {courseData.students.toLocaleString()} students</span>
-              <span className="flex items-center gap-1.5"><Star className="w-4 h-4 text-yellow-400 fill-yellow-400" /> {courseData.rating}</span>
-              <span className="flex items-center gap-1.5"><Trophy className="w-4 h-4 text-indigo-400" /> {courseData.xp} XP</span>
+              <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> {allLessons.length} lessons</span>
+              <span className="flex items-center gap-1.5"><BookOpen className="w-4 h-4" /> {course.modules.length} modules</span>
+              <span className="flex items-center gap-1.5"><Trophy className="w-4 h-4 text-indigo-400" /> {totalXp} XP</span>
             </div>
 
-            {/* Curriculum */}
-            <h2 className="text-2xl font-bold text-white mb-4">Curriculum</h2>
-            <div className="space-y-3">
-              {curriculum.map((m, i) => (
-                <div key={m.id} className="glass rounded-xl p-4 flex items-center justify-between hover:border-indigo-500/50 transition cursor-pointer">
-                  <div className="flex items-center gap-4">
-                    {m.completed ? (
-                      <CheckCircle2 className="w-6 h-6 text-green-400" />
-                    ) : i <= 2 ? (
-                      <Play className="w-6 h-6 text-indigo-400" />
-                    ) : (
-                      <Lock className="w-6 h-6 text-slate-600" />
-                    )}
-                    <div>
-                      <h3 className="text-white font-medium">{m.title}</h3>
-                      <p className="text-xs text-slate-500">{m.lessons} lessons &middot; {m.duration}</p>
-                    </div>
+            <div className="mb-8">
+              <h2 className="text-xl font-bold text-white mb-3">What You Will Learn</h2>
+              <div className="grid md:grid-cols-2 gap-2">
+                {course.whatYouLearn.map((item, i) => (
+                  <div key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                    <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 shrink-0" />
+                    {item}
                   </div>
-                  <div className="flex gap-2">
-                    {m.hasLab && <span className="text-xs px-2 py-1 rounded bg-indigo-500/20 text-indigo-300">Lab</span>}
+                ))}
+              </div>
+            </div>
+
+            <h2 className="text-2xl font-bold text-white mb-4">Curriculum</h2>
+            <div className="space-y-4">
+              {course.modules.map((mod) => (
+                <div key={mod.id} className="glass rounded-xl p-4">
+                  <h3 className="text-white font-semibold mb-3">Module {mod.id}: {mod.title}</h3>
+                  <div className="space-y-2">
+                    {mod.lessons.map((lesson) => (
+                      <Link
+                        key={lesson.id}
+                        href={`/courses/${course.id}/lessons/${lesson.id}`}
+                        className="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="text-lg">{typeIcons[lesson.type]}</span>
+                          <div>
+                            <p className="text-sm text-white group-hover:text-indigo-300 transition">{lesson.title}</p>
+                            <p className="text-xs text-slate-500">{lesson.type} · {lesson.duration}</p>
+                          </div>
+                        </div>
+                        <span className="text-xs text-indigo-400 font-medium">+{lesson.xp} XP</span>
+                      </Link>
+                    ))}
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="glass rounded-2xl p-6 sticky top-24">
               <div className="h-40 rounded-xl bg-gradient-to-br from-indigo-600/30 to-purple-600/30 flex items-center justify-center mb-6">
                 <Play className="w-16 h-16 text-white/60" />
               </div>
-              <button className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-white font-semibold transition mb-3">
+              <Link href={`/courses/${course.id}/lessons/${allLessons[0]?.id}`} className="block w-full py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-white font-semibold transition mb-3 text-center">
                 Start Learning
-              </button>
-              <button className="w-full py-3 border border-slate-600 hover:border-indigo-500 rounded-xl text-slate-300 hover:text-white transition font-medium mb-6">
-                Add to Wishlist
-              </button>
-              <div className="space-y-3 text-sm">
-                <div className="flex justify-between"><span className="text-slate-400">Instructor</span><span className="text-white">{courseData.instructor}</span></div>
-                <div className="flex justify-between"><span className="text-slate-400">Level</span><span className="text-white">{courseData.level}</span></div>
-                <div className="flex justify-between"><span className="text-slate-400">Duration</span><span className="text-white">{courseData.duration}</span></div>
-                <div className="flex justify-between"><span className="text-slate-400">XP Reward</span><span className="text-indigo-400 font-medium">{courseData.xp} XP</span></div>
+              </Link>
+              <div className="space-y-3 text-sm mt-4">
+                <div className="flex justify-between"><span className="text-slate-400">Instructor</span><span className="text-white">{course.instructor}</span></div>
+                <div className="flex justify-between"><span className="text-slate-400">Level</span><span className="text-white">{course.level}</span></div>
+                <div className="flex justify-between"><span className="text-slate-400">Lessons</span><span className="text-white">{allLessons.length}</span></div>
+                <div className="flex justify-between"><span className="text-slate-400">XP Reward</span><span className="text-indigo-400 font-medium">{totalXp} XP</span></div>
               </div>
               <div className="mt-6 p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20">
                 <div className="flex items-center gap-2 mb-2">
@@ -113,6 +111,15 @@ export default async function CourseDetail({ params }: { params: Promise<{ id: s
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="text-xl font-bold text-white mb-3">Requirements</h2>
+          <ul className="list-disc list-inside text-slate-400 text-sm space-y-1">
+            {course.requirements.map((req, i) => (
+              <li key={i}>{req}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </main>
