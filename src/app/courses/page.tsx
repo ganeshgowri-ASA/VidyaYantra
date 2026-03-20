@@ -1,71 +1,117 @@
-import { BookOpen, Clock, Users, Star, Code2, Brain, Palette, Globe, Shield, Trophy } from 'lucide-react'
+'use client'
+import { useState } from 'react'
 import Link from 'next/link'
-import { allCourses, getAllLessons } from '@/lib/courseData'
+import { courses, getCoursesByGrade, getAllGrades, getGradeLabel } from '@/lib/courseData'
 
-const levelColors: Record<string, string> = {
-  Beginner: 'bg-green-500/20 text-green-400 border-green-500/30',
-  Intermediate: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-  Advanced: 'bg-red-500/20 text-red-400 border-red-500/30',
+const subjectColors: Record<string, string> = {
+  Mathematics: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+  Science: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
+  EVS: 'bg-green-500/20 text-green-400 border-green-500/30',
+  English: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+  Hindi: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+  'Social Studies': 'bg-teal-500/20 text-teal-400 border-teal-500/30',
 }
 
-const categoryColors: Record<string, string> = {
-  Development: 'from-indigo-600/20 to-blue-600/20',
-  'Data Science': 'from-purple-600/20 to-pink-600/20',
-  Design: 'from-orange-600/20 to-yellow-600/20',
-  Cloud: 'from-cyan-600/20 to-teal-600/20',
+const gradeEmojis: Record<string, string> = {
+  '1-2': '🌟',
+  '3-5': '📚',
+  '6-8': '🔬',
+  '9-10': '🎯',
 }
 
-export default function CourseCatalog() {
+export default function CoursesPage() {
+  const [activeGrade, setActiveGrade] = useState('1-2')
+  const grades = getAllGrades()
+  const filteredCourses = getCoursesByGrade(activeGrade)
+
   return (
-    <main className="min-h-screen">
-      <nav className="flex items-center justify-between px-6 md:px-12 py-4 border-b border-white/10 backdrop-blur-md sticky top-0 z-50">
-        <Link href="/" className="flex items-center gap-2">
-          <BookOpen className="w-8 h-8 text-indigo-400" />
-          <span className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">VidyaYantra</span>
-        </Link>
-        <div className="hidden md:flex items-center gap-6 text-sm text-slate-400">
-          <Link href="/courses" className="text-white">Courses</Link>
-          <Link href="/playground" className="hover:text-white transition">Playground</Link>
-          <Link href="/dashboard" className="hover:text-white transition">Dashboard</Link>
-        </div>
-      </nav>
+    <main className="min-h-screen bg-slate-900">
+      {/* Header */}
+      <div className="px-6 md:px-12 py-8 border-b border-white/10">
+        <Link href="/" className="text-slate-400 hover:text-white text-sm mb-4 inline-block">← Back to Home</Link>
+        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">🏢 School Courses</h1>
+        <p className="text-slate-400">Interactive lessons, quizzes & labs for Classes 1-10</p>
+      </div>
 
-      <div className="px-4 md:px-12 py-12 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Course Catalog</h1>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">Explore our interactive courses with hands-on exercises, live code sandboxes, quizzes, and AI-powered tutoring.</p>
+      {/* Grade Tabs */}
+      <div className="px-6 md:px-12 py-6">
+        <div className="flex flex-wrap gap-3 mb-8">
+          {grades.map(grade => (
+            <button
+              key={grade}
+              onClick={() => setActiveGrade(grade)}
+              className={`px-5 py-2.5 rounded-xl font-semibold text-sm transition-all border ${
+                activeGrade === grade
+                  ? 'bg-indigo-600 text-white border-indigo-500 shadow-lg shadow-indigo-500/25'
+                  : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10 hover:text-white'
+              }`}
+            >
+              {gradeEmojis[grade]} {getGradeLabel(grade)}
+            </button>
+          ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {allCourses.map((course) => {
-            const lessons = getAllLessons(course.id)
-            const totalXp = lessons.reduce((sum, l) => sum + l.xp, 0)
-            return (
-              <Link key={course.id} href={`/courses/${course.id}`} className="glass rounded-2xl overflow-hidden hover:border-indigo-500/50 transition group">
-                <div className={`h-32 bg-gradient-to-br ${categoryColors[course.category] || 'from-slate-600/20 to-slate-600/20'} flex items-center justify-center`}>
-                  <div className="text-center">
-                    <p className="text-3xl mb-1">{course.category === 'Development' ? '💻' : course.category === 'Data Science' ? '📊' : course.category === 'Design' ? '🎨' : '☁️'}</p>
-                    <p className="text-xs text-slate-400">{course.category}</p>
-                  </div>
+        {/* Course Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredCourses.length === 0 ? (
+            <div className="col-span-3 text-center py-16">
+              <div className="text-5xl mb-4">📚</div>
+              <p className="text-slate-400 text-lg">More courses coming soon for {getGradeLabel(activeGrade)}!</p>
+            </div>
+          ) : (
+            filteredCourses.map(course => (
+              <Link href={`/courses/${course.id}`} key={course.id}
+                className="group bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/8 hover:border-indigo-500/40 transition-all hover:shadow-xl hover:shadow-indigo-500/10 hover:-translate-y-1">
+                {/* Icon & Subject */}
+                <div className="flex items-start justify-between mb-4">
+                  <div className="text-4xl">{course.icon}</div>
+                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg border ${
+                    subjectColors[course.subject] || 'bg-white/10 text-slate-300 border-white/20'
+                  }`}>
+                    {course.subject}
+                  </span>
                 </div>
-                <div className="p-6">
-                  <div className="flex gap-2 mb-3">
-                    <span className={`text-xs px-2 py-0.5 rounded-full border ${levelColors[course.level]}`}>{course.level}</span>
-                  </div>
-                  <h2 className="text-lg font-bold text-white mb-2 group-hover:text-indigo-300 transition">{course.title}</h2>
-                  <p className="text-sm text-slate-400 mb-4 line-clamp-2">{course.about}</p>
-                  <div className="flex items-center justify-between text-xs text-slate-500">
-                    <div className="flex gap-4">
-                      <span className="flex items-center gap-1"><BookOpen className="w-3.5 h-3.5" /> {course.modules.length} modules</span>
-                      <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {lessons.length} lessons</span>
-                    </div>
-                    <span className="flex items-center gap-1 text-indigo-400"><Trophy className="w-3.5 h-3.5" /> {totalXp} XP</span>
-                  </div>
-                  <p className="text-xs text-slate-500 mt-2">by {course.instructor}</p>
+
+                {/* Title & Description */}
+                <h3 className="text-white font-bold text-lg mb-2 group-hover:text-indigo-300 transition-colors">
+                  {course.title}
+                </h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4 line-clamp-2">
+                  {course.description}
+                </p>
+
+                {/* Stats */}
+                <div className="flex items-center gap-4 text-xs text-slate-500 mb-4">
+                  <span>📚 {course.totalLessons} lessons</span>
+                  <span>⏰ {course.totalDuration}</span>
+                  <span>⚡ {course.xpReward} XP</span>
+                </div>
+
+                {/* Module count */}
+                <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                  <span className="text-slate-400 text-xs">{course.modules.length} modules</span>
+                  <span className="text-indigo-400 text-sm font-semibold group-hover:text-indigo-300">
+                    Start Learning →
+                  </span>
                 </div>
               </Link>
-            )
-          })}
+            ))
+          )}
+        </div>
+
+        {/* Stats Bar */}
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[{label: 'Total Courses', val: courses.length, icon: '📚'},
+            {label: 'Subjects', val: [...new Set(courses.map(c=>c.subject))].length, icon: '🎯'},
+            {label: 'Total Lessons', val: courses.reduce((a,c)=>a+c.totalLessons,0), icon: '▶️'},
+            {label: 'Max XP', val: courses.reduce((a,c)=>a+c.xpReward,0).toLocaleString(), icon: '⚡'}
+          ].map(s => (
+            <div key={s.label} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+              <div className="text-2xl mb-1">{s.icon}</div>
+              <div className="text-white font-bold text-xl">{s.val}</div>
+              <div className="text-slate-400 text-xs">{s.label}</div>
+            </div>
+          ))}
         </div>
       </div>
     </main>
