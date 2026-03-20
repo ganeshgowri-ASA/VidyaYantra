@@ -26,7 +26,7 @@ export default function CoursesPage() {
 
   return (
     <main className="min-h-screen bg-slate-900">
-      <div className="max-w-7xl mx-auto px-6 py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* Header */}
         <div className="pt-4 pb-8 border-b border-white/10 mb-8">
           <Link href="/" className="text-slate-400 hover:text-white text-sm mb-4 inline-block">← Back to Home</Link>
@@ -41,7 +41,7 @@ export default function CoursesPage() {
             {label: 'Total Lessons', val: courses.reduce((a,c)=>a+c.totalLessons,0), icon: '▶️'},
             {label: 'Max XP', val: courses.reduce((a,c)=>a+c.xpReward,0).toLocaleString(), icon: '⚡'}
           ].map(s => (
-            <div key={s.label} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+            <div key={s.label} className="bg-white/5 border border-white/10 rounded-xl p-5 text-center min-h-[100px] flex flex-col items-center justify-center">
               <div className="text-2xl mb-1">{s.icon}</div>
               <div className="text-white font-bold text-xl">{s.val}</div>
               <div className="text-slate-400 text-xs">{s.label}</div>
@@ -55,7 +55,7 @@ export default function CoursesPage() {
             <button
               key={grade}
               onClick={() => setActiveGrade(grade)}
-              className={`px-5 py-2.5 rounded-full font-semibold text-sm transition-all border ${
+              className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all border ${
                 activeGrade === grade
                   ? 'bg-indigo-600 text-white border-indigo-500 shadow-lg shadow-indigo-500/25'
                   : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10 hover:text-white'
@@ -63,12 +63,11 @@ export default function CoursesPage() {
             >
               {gradeEmojis[grade]} {getGradeLabel(grade)}
             </button>
-
           ))}
         </div>
 
         {/* Course Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-8">
           {filteredCourses.length === 0 ? (
             <div className="col-span-3 text-center py-16">
               <div className="text-5xl mb-4">📚</div>
