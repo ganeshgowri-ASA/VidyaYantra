@@ -199,6 +199,13 @@ export default async function CourseDetail({ params }: { params: Promise<{ id: s
                     ▶ Start Learning Now
                   </Link>
 
+                  <Link
+                    href={`/quiz/${course.id}`}
+                    className="block w-full text-center bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-400 font-bold py-3 rounded-xl transition-all border border-yellow-500/20"
+                  >
+                    🧠 Take Course Quiz
+                  </Link>
+
                   <div className="space-y-3 pt-4 border-t border-white/10">
                     <div className="flex items-center justify-between">
                       <span className="text-slate-400 text-sm">Lessons</span>
