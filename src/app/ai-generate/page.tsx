@@ -22,8 +22,13 @@ export default function AiGeneratePage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ generate: true, topic, grade, subject, difficulty })
       })
+      if (!r.ok) throw new Error(`HTTP ${r.status}`)
       const data = await r.json()
-      setResult(data)
+      if (data.error) {
+        setResult({ error: data.error })
+      } else {
+        setResult(data.lesson || data)
+      }
     } catch (e) {
       setResult({ error: 'Failed to generate. Please try again.' })
     }
@@ -183,12 +188,6 @@ export default function AiGeneratePage() {
           </div>
         )}
 
-        {result && result.reply && (
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-            <h3 className="font-bold text-indigo-400 mb-3">Generated Content</h3>
-            <p className="text-slate-300 whitespace-pre-wrap">{result.reply}</p>
-          </div>
-        )}
       </div>
     </main>
   )
