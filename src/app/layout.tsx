@@ -16,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/courses" className="text-slate-400 hover:text-white text-sm font-medium transition-colors">📚 Courses</Link>
               <Link href="/dashboard" className="text-slate-400 hover:text-white text-sm font-medium transition-colors">🏅 Dashboard</Link>
               <Link href="/playground" className="text-slate-400 hover:text-white text-sm font-medium transition-colors">🔬 Lab</Link>
+              <Link href="/ai-generate" className="text-slate-400 hover:text-white text-sm font-medium transition-colors">🤖 AI Studio</Link>
               <Link href="/courses" className="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-all">Start Learning</Link>
             </div>
           </div>
