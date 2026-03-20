@@ -1358,6 +1358,481 @@ export const courses: Course[] = [
         ]
       }
     ]
+  },
+  {
+    id: 'c2-hindi',
+    title: 'Class 2 - Hindi',
+    description: 'हिंदी की दुनिया में आगे बढ़ो! Simple stories, matra practice, and letter formation with fun activities.',
+    grade: '1-2',
+    subject: 'Hindi',
+    icon: '📝',
+    color: 'bg-orange-600',
+    totalLessons: 6,
+    totalDuration: '3 hours',
+    xpReward: 350,
+    modules: [
+      {
+        id: 'c2hi-m1',
+        title: 'मात्राएँ और कहानियाँ',
+        lessons: [
+          {
+            id: 'c2hi-1-1',
+            title: 'आ, इ, ई की मात्राएँ 🌸',
+            type: 'video',
+            duration: '10 min',
+            xp: 40,
+            content: {
+              overview: 'Learn to add matras to consonants to form new words! See how "क" becomes "का", "कि", "की" with different matras.',
+              keyPoints: ['आ, इ, ई matras change word sounds', 'Practice with common words', 'Read matra words aloud'],
+              videoTitle: 'Matra Magic - Hindi Fun',
+              videoDuration: '10:00',
+              quiz: [
+                { id: 1, question: '"क" + "आ" की मात्रा = ?', options: ['कि', 'का', 'कु', 'के'], correct: 1, explanation: '"क" में "आ" की मात्रा लगाने से "का" बनता है। जैसे "काम", "काला", "कान"! 🌟' },
+                { id: 2, question: '"ल" + "ई" की मात्रा से कौन सा शब्द बनता है?', options: ['ला', 'लि', 'ली', 'लु'], correct: 2, explanation: '"ल" में "ई" की मात्रा लगाने से "ली" बनता है। जैसे "नीली", "दीदी"! ✨' }
+              ]
+            }
+          },
+          {
+            id: 'c2hi-1-2',
+            title: 'छोटी कहानी - चालाक खरगोश 🐰',
+            type: 'reading',
+            duration: '12 min',
+            xp: 45,
+            content: {
+              overview: 'Read a fun Hindi story about a clever rabbit! Practice reading full sentences with matras and understand the story.',
+              keyPoints: ['Read Hindi sentences with matras', 'Understand story meaning', 'Answer questions in Hindi'],
+              quiz: [
+                { id: 1, question: 'कहानी पढ़ने से क्या फायदा होता है?', options: ['सिर्फ मनोरंजन', 'नए शब्द सीखना और समझ बढ़ाना', 'सोने में मदद', 'कुछ नहीं'], correct: 1, explanation: 'कहानियाँ पढ़ने से नए शब्द सीखते हैं, कल्पना बढ़ती है और हिंदी समझ बेहतर होती है! 📖' },
+                { id: 2, question: '"चालाक" का क्या मतलब है?', options: ['धीमा', 'डरपोक', 'होशियार', 'बड़ा'], correct: 2, explanation: '"चालाक" मतलब होशियार या बुद्धिमान! The clever rabbit used its smartness. 🐰' }
+              ]
+            }
+          },
+          {
+            id: 'c2hi-1-3',
+            title: 'अक्षर लिखना - सुंदर लेखन ✍️',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 40,
+            content: {
+              overview: 'Practice writing Hindi letters beautifully! Good handwriting makes reading easier and shows you care about your work.',
+              keyPoints: ['Correct stroke order for Hindi letters', 'Write within the lines', 'Form letters of even size'],
+              exercise: {
+                title: 'Hindi Handwriting Tracer',
+                instructions: 'Trace each Hindi letter following the arrows showing stroke order. Then write it 3 times on your own. Make it neat and even!',
+                hints: ['Start from the top', 'Follow the arrow direction', 'Keep letters the same size']
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c3-maths',
+    title: 'Class 3 - Mathematics',
+    description: 'Step up your maths game! Multiplication tables, division, fractions, and fun geometry with interactive problems.',
+    grade: '3-5',
+    subject: 'Mathematics',
+    icon: '✖️',
+    color: 'bg-blue-500',
+    totalLessons: 6,
+    totalDuration: '4 hours',
+    xpReward: 450,
+    modules: [
+      {
+        id: 'c3m-m1',
+        title: 'Multiplication, Division & Fractions',
+        lessons: [
+          {
+            id: 'c3m-1-1',
+            title: 'Multiplication Tables 3-9 🏆',
+            type: 'video',
+            duration: '12 min',
+            xp: 50,
+            content: {
+              overview: 'Master multiplication tables from 3 to 9 with tricks, patterns, and catchy songs! The more you practise, the faster you get.',
+              keyPoints: ['Tables 3 to 9 by heart', 'Spot patterns in multiplication', 'Use tables to solve problems quickly'],
+              videoTitle: 'Times Tables Mastery 3-9',
+              videoDuration: '12:00',
+              quiz: [
+                { id: 1, question: '7 × 8 = ?', options: ['54', '56', '63', '48'], correct: 1, explanation: '7 × 8 = 56! Trick: 5, 6, 7, 8 → 56 = 7 × 8. 🌟' },
+                { id: 2, question: '9 × 6 = ?', options: ['45', '54', '63', '36'], correct: 1, explanation: '9 × 6 = 54! The 9 times table: digits always add up to 9. 5+4=9 ✅' }
+              ]
+            }
+          },
+          {
+            id: 'c3m-1-2',
+            title: 'Division - Sharing Equally ➗',
+            type: 'exercise',
+            duration: '12 min',
+            xp: 50,
+            content: {
+              overview: 'Division means sharing equally! If 12 cookies are shared between 3 friends, each gets 4. Division is the opposite of multiplication.',
+              keyPoints: ['Division = equal sharing', 'Relate division to multiplication', 'Remainders when things don\'t share evenly'],
+              exercise: {
+                title: 'Fair Share Game',
+                instructions: 'Drag items to share them equally into groups! Then write the division sentence. Example: 15 ÷ 3 = 5 (5 in each group).',
+                hints: ['Think: how many in EACH group?', 'Use multiplication facts to help', '20 ÷ 4 = ? Think: 4 × ? = 20']
+              }
+            }
+          },
+          {
+            id: 'c3m-1-3',
+            title: 'Intro to Fractions - Half & Quarter 🍕',
+            type: 'quiz',
+            duration: '10 min',
+            xp: 55,
+            content: {
+              overview: 'A fraction is a part of a whole! Half a pizza (1/2), a quarter of an orange (1/4) - fractions are all around us.',
+              keyPoints: ['Fraction = part of a whole', '1/2 means 1 out of 2 equal parts', 'Compare simple fractions: 1/2 > 1/4'],
+              quiz: [
+                { id: 1, question: 'A pizza is cut into 4 equal slices. You eat 1 slice. What fraction did you eat? 🍕', options: ['1/2', '1/3', '1/4', '4/1'], correct: 2, explanation: '1 slice out of 4 equal slices = 1/4 (one quarter)! Yum! 🍕' },
+                { id: 2, question: 'Which fraction is BIGGER?', options: ['1/4', '1/2', 'They are equal', 'Cannot tell'], correct: 1, explanation: '1/2 is bigger than 1/4! Half of something is more than a quarter of the same thing. 🌟' }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c3-science',
+    title: 'Class 3 - Science',
+    description: 'Discover your world! Learn about living vs non-living things, weather and seasons, and properties of materials.',
+    grade: '3-5',
+    subject: 'Science',
+    icon: '🌍',
+    color: 'bg-green-500',
+    totalLessons: 6,
+    totalDuration: '4 hours',
+    xpReward: 450,
+    modules: [
+      {
+        id: 'c3sc-m1',
+        title: 'Living, Weather & Materials',
+        lessons: [
+          {
+            id: 'c3sc-1-1',
+            title: 'Living vs Non-Living Things 🌿🪨',
+            type: 'video',
+            duration: '10 min',
+            xp: 45,
+            content: {
+              overview: 'How do we know if something is alive? Living things grow, breathe, eat, reproduce, and respond to their environment. Non-living things don\'t!',
+              keyPoints: ['7 characteristics of living things', 'Examples of living and non-living', 'Plants and animals are both living things'],
+              videoTitle: 'Alive or Not Alive?',
+              videoDuration: '10:00',
+              quiz: [
+                { id: 1, question: 'Which of these is a LIVING thing?', options: ['Rock 🪨', 'Water 💧', 'Mushroom 🍄', 'Cloud ☁️'], correct: 2, explanation: 'Mushrooms are living things! 🍄 They grow, reproduce, and need food. Rocks and water are non-living.' },
+                { id: 2, question: 'A living thing can...', options: ['Only move', 'Grow and reproduce', 'Only breathe', 'Just eat'], correct: 1, explanation: 'Living things grow AND reproduce (make more of themselves). They also breathe, eat, and respond to changes! 🌿' }
+              ]
+            }
+          },
+          {
+            id: 'c3sc-1-2',
+            title: 'Weather & Seasons ☀️🌧️❄️',
+            type: 'lab',
+            duration: '12 min',
+            xp: 50,
+            content: {
+              overview: 'Weather changes every day but seasons follow a pattern! Explore how temperature, rainfall, and wind change through Summer, Monsoon, and Winter.',
+              keyPoints: ['Weather changes daily: sunny, rainy, windy, cloudy', 'India has 3 main seasons', 'Weather affects what we wear and do'],
+              quiz: [
+                { id: 1, question: 'Which tool measures temperature? 🌡️', options: ['Scale', 'Thermometer', 'Ruler', 'Clock'], correct: 1, explanation: 'A thermometer measures temperature! 🌡️ In summer, the thermometer shows high numbers.' },
+                { id: 2, question: 'In monsoon season, we get lots of...', options: ['Snow ❄️', 'Rain 🌧️', 'Heat waves 🔥', 'Fog 🌫️'], correct: 1, explanation: 'Monsoon brings heavy rain! 🌧️ India gets most of its rainfall during the June-September monsoon season.' }
+              ]
+            }
+          },
+          {
+            id: 'c3sc-1-3',
+            title: 'Materials Around Us - Hard, Soft, Rough, Smooth 🔍',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 45,
+            content: {
+              overview: 'Everything around us is made from materials! Wood, metal, plastic, fabric - each has different properties that make it useful.',
+              keyPoints: ['Materials have properties: hard/soft, rough/smooth, transparent/opaque', 'We choose materials based on their properties', 'Same material can be used in different ways'],
+              exercise: {
+                title: 'Material Properties Sorter',
+                instructions: 'Touch (or imagine touching) each object. Is it hard or soft? Rough or smooth? Drag each material into the correct properties box!',
+                hints: ['Glass is hard AND smooth AND transparent', 'Sandpaper is hard but rough', 'Cotton is soft and useful for clothes because it absorbs sweat']
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c4-maths',
+    title: 'Class 4 - Mathematics',
+    description: 'Build stronger maths skills! Large numbers, geometry shapes, measurement, and number patterns.',
+    grade: '3-5',
+    subject: 'Mathematics',
+    icon: '📐',
+    color: 'bg-blue-700',
+    totalLessons: 6,
+    totalDuration: '4 hours',
+    xpReward: 500,
+    modules: [
+      {
+        id: 'c4m-m1',
+        title: 'Large Numbers, Geometry & Patterns',
+        lessons: [
+          {
+            id: 'c4m-1-1',
+            title: 'Numbers up to 10,000 - Place Value 🔢',
+            type: 'video',
+            duration: '12 min',
+            xp: 50,
+            content: {
+              overview: 'Explore thousands, hundreds, tens and ones! Learn to read, write, and compare large numbers up to 10,000.',
+              keyPoints: ['4-digit numbers: Th, H, T, O', 'Read and write numbers in words', 'Compare numbers using <, >, ='],
+              videoTitle: 'Big Numbers - Place Value Power',
+              videoDuration: '12:00',
+              quiz: [
+                { id: 1, question: 'In 4,375 - what is in the HUNDREDS place?', options: ['4', '3', '7', '5'], correct: 1, explanation: '4,375 → Thousands=4, Hundreds=3, Tens=7, Ones=5. The hundreds digit is 3! 🔢' },
+                { id: 2, question: 'Which number is GREATER?', options: ['3,456', '3,546', '3,465', '3,564'], correct: 3, explanation: 'Compare from left: all start with 3. Then 5 > 4. So 3,564 is the greatest! 🌟' }
+              ]
+            }
+          },
+          {
+            id: 'c4m-1-2',
+            title: 'Geometry - Angles & Shapes 📐',
+            type: 'lab',
+            duration: '12 min',
+            xp: 55,
+            content: {
+              overview: 'Explore angles - right angle (90°), acute (less than 90°), and obtuse (more than 90°). Identify them in 2D shapes and real life!',
+              keyPoints: ['Right angle = 90°, Acute < 90°, Obtuse > 90°', 'Identify angles in triangles, rectangles', 'Spot angles in your classroom'],
+              quiz: [
+                { id: 1, question: 'The corner of a book makes a...', options: ['Acute angle', 'Right angle', 'Obtuse angle', 'Straight angle'], correct: 1, explanation: 'The corner of a book is a perfect right angle of 90°! Right angles look like the letter L. 📐' },
+                { id: 2, question: 'An angle of 60° is called...', options: ['Right angle', 'Straight angle', 'Obtuse angle', 'Acute angle'], correct: 3, explanation: '60° is less than 90°, so it is an acute angle! Acute angles are "sharp" and small. 🔺' }
+              ]
+            }
+          },
+          {
+            id: 'c4m-1-3',
+            title: 'Number Patterns & Sequences 🌀',
+            type: 'quiz',
+            duration: '10 min',
+            xp: 50,
+            content: {
+              overview: 'Numbers love to follow patterns! Skip counting, growing patterns, and magic number sequences help us predict what comes next.',
+              keyPoints: ['Identify the rule in a pattern', 'Extend number sequences', 'Even, odd, and skip-count patterns'],
+              quiz: [
+                { id: 1, question: 'Find the pattern: 5, 10, 20, 40, __', options: ['50', '60', '80', '45'], correct: 2, explanation: 'Each number is DOUBLED! 5×2=10, 10×2=20, 20×2=40, 40×2=80. 🌟' },
+                { id: 2, question: 'What are the next two numbers? 3, 6, 9, 12, __, __', options: ['13, 14', '14, 16', '15, 18', '13, 16'], correct: 2, explanation: 'Count by 3s! 12+3=15, 15+3=18. This is the 3 times table! ✖️' }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c4-english',
+    title: 'Class 4 - English',
+    description: 'Level up your English! Master tenses, write creative stories, and tackle reading comprehension with confidence.',
+    grade: '3-5',
+    subject: 'English',
+    icon: '📚',
+    color: 'bg-purple-500',
+    totalLessons: 6,
+    totalDuration: '4 hours',
+    xpReward: 500,
+    modules: [
+      {
+        id: 'c4en-m1',
+        title: 'Tenses, Writing & Comprehension',
+        lessons: [
+          {
+            id: 'c4en-1-1',
+            title: 'Tenses - Past, Present, Future ⏰',
+            type: 'video',
+            duration: '12 min',
+            xp: 50,
+            content: {
+              overview: 'Tenses tell us WHEN something happens! "I eat" (now), "I ate" (before), "I will eat" (later). Master all three forms!',
+              keyPoints: ['Present tense: happening now', 'Past tense: already happened (add -ed)', 'Future tense: will happen (use "will")'],
+              videoTitle: 'Time Travel with Tenses',
+              videoDuration: '12:00',
+              quiz: [
+                { id: 1, question: '"She __ to school yesterday." Which verb fits?', options: ['walk', 'walks', 'walked', 'will walk'], correct: 2, explanation: '"Yesterday" tells us it already happened → past tense → "walked". She walked to school yesterday. ✅' },
+                { id: 2, question: 'Change to future tense: "The dog runs fast."', options: ['The dog ran fast', 'The dog running fast', 'The dog will run fast', 'The dog runs faster'], correct: 2, explanation: 'Future tense uses "will" + base verb. "The dog will run fast." ⏰🐕' }
+              ]
+            }
+          },
+          {
+            id: 'c4en-1-2',
+            title: 'Creative Writing - Tell a Story! ✍️',
+            type: 'exercise',
+            duration: '15 min',
+            xp: 60,
+            content: {
+              overview: 'Every great story has a beginning, middle, and end! Learn to plan and write your own short story with interesting characters and events.',
+              keyPoints: ['Story structure: beginning, middle, end', 'Use describing words to make it vivid', 'Give your character a problem to solve'],
+              exercise: {
+                title: 'My Story Planner',
+                instructions: 'Fill in the story planner: Who is the character? Where are they? What problem do they face? How do they solve it? Write your 5-sentence story!',
+                hints: ['Beginning: introduce your character and setting', 'Middle: describe the problem or adventure', 'End: how is the problem solved? How does the character feel?']
+              }
+            }
+          },
+          {
+            id: 'c4en-1-3',
+            title: 'Reading Comprehension - Find the Clues! 🔍',
+            type: 'reading',
+            duration: '12 min',
+            xp: 50,
+            content: {
+              overview: 'Good readers think while they read! Learn to find the main idea, supporting details, and author\'s purpose in any passage.',
+              keyPoints: ['Find the main idea', 'Identify key supporting details', 'Make inferences from clues in the text'],
+              quiz: [
+                { id: 1, question: 'Where do you find the MAIN IDEA of a paragraph?', options: ['Always in the last sentence', 'Usually in the first or last sentence', 'Only in the title', 'Never in the paragraph'], correct: 1, explanation: 'The main idea is often in the first (topic) sentence or last (concluding) sentence of a paragraph! 🔍' },
+                { id: 2, question: 'An "inference" means...', options: ['Copying from the text', 'Using clues to figure out something not directly stated', 'The title of the passage', 'A type of question'], correct: 1, explanation: 'Inference = detective work! 🕵️ Use clues in the text + what you already know to figure out the hidden meaning.' }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c4-science',
+    title: 'Class 4 - Science',
+    description: 'Explore matter, force, and habitats! Hands-on experiments with solids, liquids, gases, magnets, and ecosystems.',
+    grade: '3-5',
+    subject: 'Science',
+    icon: '🔭',
+    color: 'bg-teal-500',
+    totalLessons: 6,
+    totalDuration: '4 hours',
+    xpReward: 500,
+    modules: [
+      {
+        id: 'c4sc-m1',
+        title: 'Matter, Force & Habitats',
+        lessons: [
+          {
+            id: 'c4sc-1-1',
+            title: 'States of Matter - Solid, Liquid, Gas 🧊💧💨',
+            type: 'video',
+            duration: '12 min',
+            xp: 50,
+            content: {
+              overview: 'Everything around us is matter! Ice, water, and steam are all the same substance in 3 different states. Heat causes matter to change state!',
+              keyPoints: ['Solid: fixed shape and volume', 'Liquid: fixed volume, takes container shape', 'Gas: no fixed shape or volume'],
+              videoTitle: 'States of Matter Animated',
+              videoDuration: '12:00',
+              quiz: [
+                { id: 1, question: 'When ice melts, it becomes...', options: ['Gas', 'Solid', 'Liquid', 'Steam'], correct: 2, explanation: 'When ice (solid) is heated, it melts into water (liquid)! 🧊→💧 This is called melting.' },
+                { id: 2, question: 'Which has NO fixed shape?', options: ['Iron rod', 'Ice cube', 'Book', 'Air'], correct: 3, explanation: 'Air is a gas - it has no fixed shape! 💨 It fills whatever container it is put in.' }
+              ]
+            }
+          },
+          {
+            id: 'c4sc-1-2',
+            title: 'Force & Motion - Push and Pull! 💪',
+            type: 'lab',
+            duration: '12 min',
+            xp: 50,
+            content: {
+              overview: 'A force is a push or pull that can start, stop, or change the direction of motion! Gravity, friction, and magnetic force are all around us.',
+              keyPoints: ['Force = push or pull', 'Gravity pulls things downward', 'Friction slows moving objects'],
+              quiz: [
+                { id: 1, question: 'When you kick a ball, you apply a...', options: ['Pull', 'Push', 'Gravity', 'Friction'], correct: 1, explanation: 'Kicking applies a PUSH force! ⚽ Your foot pushes the ball forward and it moves.' },
+                { id: 2, question: 'Friction between tyres and road helps a car to...', options: ['Go faster', 'Float', 'Stop and grip the road', 'Fly'], correct: 2, explanation: 'Friction between tyres and road helps cars grip and stop safely! 🚗 Without friction, cars would slide everywhere.' }
+              ]
+            }
+          },
+          {
+            id: 'c4sc-1-3',
+            title: 'Habitats - Where Animals Live 🌴🏔️🌊',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 50,
+            content: {
+              overview: 'A habitat is an animal\'s natural home! It provides food, water, shelter, and safety. Desert, rainforest, ocean, and arctic are very different habitats.',
+              keyPoints: ['Habitat provides food, water, and shelter', 'Animals are adapted to their habitat', 'Destroying habitats endangers animals'],
+              exercise: {
+                title: 'Habitat Match Game',
+                instructions: 'Match each animal to its correct habitat! A camel lives in the desert because it can survive without water for days. Where do polar bears, dolphins, and parrots live?',
+                hints: ['Think about what each animal needs to survive', 'Polar regions are cold - which animals have thick fur or blubber?', 'Ocean animals need to breathe underwater or come up for air']
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c5-maths',
+    title: 'Class 5 - Mathematics',
+    description: 'Master decimals, perimeter, area, and data handling! Build the maths skills you need for middle school.',
+    grade: '3-5',
+    subject: 'Mathematics',
+    icon: '📏',
+    color: 'bg-indigo-500',
+    totalLessons: 6,
+    totalDuration: '4 hours',
+    xpReward: 550,
+    modules: [
+      {
+        id: 'c5m-m1',
+        title: 'Decimals, Measurement & Data',
+        lessons: [
+          {
+            id: 'c5m-1-1',
+            title: 'Decimals - Tenths & Hundredths 🔢',
+            type: 'video',
+            duration: '12 min',
+            xp: 55,
+            content: {
+              overview: 'Decimals are fractions written with a dot! 0.5 = 1/2, 0.25 = 1/4. See decimals on number lines, in money, and measurements.',
+              keyPoints: ['Decimal point separates whole and part', 'Tenths: 1 decimal place (0.1)', 'Hundredths: 2 decimal places (0.01)'],
+              videoTitle: 'Decimals Demystified!',
+              videoDuration: '12:00',
+              quiz: [
+                { id: 1, question: 'What is 0.7 as a fraction?', options: ['7/100', '7/10', '1/7', '70/100'], correct: 1, explanation: '0.7 = 7 tenths = 7/10! One decimal place means tenths. 🔢' },
+                { id: 2, question: 'Which decimal is LARGER?', options: ['0.3', '0.29', '0.03', '0.009'], correct: 0, explanation: '0.3 = 0.300, which is bigger than 0.290. Always compare from left to right after the decimal! 🌟' }
+              ]
+            }
+          },
+          {
+            id: 'c5m-1-2',
+            title: 'Perimeter & Area - Measure Shapes! 📏',
+            type: 'lab',
+            duration: '14 min',
+            xp: 60,
+            content: {
+              overview: 'Perimeter is the distance AROUND a shape, area is the space INSIDE! Use formulas for rectangles and count squares for irregular shapes.',
+              keyPoints: ['Perimeter = sum of all sides', 'Area of rectangle = length × breadth', 'Area is measured in square units'],
+              quiz: [
+                { id: 1, question: 'A rectangle is 8 cm long and 5 cm wide. What is its perimeter?', options: ['40 cm', '13 cm', '26 cm', '20 cm'], correct: 2, explanation: 'Perimeter = 2 × (length + width) = 2 × (8+5) = 2 × 13 = 26 cm! 📏' },
+                { id: 2, question: 'The AREA of the same rectangle (8cm × 5cm) is?', options: ['26 sq cm', '40 sq cm', '13 sq cm', '80 sq cm'], correct: 1, explanation: 'Area = length × breadth = 8 × 5 = 40 square centimetres! 🟦' }
+              ]
+            }
+          },
+          {
+            id: 'c5m-1-3',
+            title: 'Data Handling - Bar Graphs & Pictographs 📊',
+            type: 'exercise',
+            duration: '12 min',
+            xp: 55,
+            content: {
+              overview: 'Data tells stories! Learn to read and draw bar graphs and pictographs. Collect data from your class and represent it visually.',
+              keyPoints: ['Collect and organize data in a table', 'Draw a bar graph with title and labels', 'Read graphs to answer questions'],
+              exercise: {
+                title: 'My Class Survey Graph',
+                instructions: 'Survey: What is your favourite fruit? Collect data from 10 friends. Make a tally chart, then draw a bar graph. Label your axes and give it a title!',
+                hints: ['Tally marks: IIII = 5', 'Draw bars of equal width', 'The tallest bar = most popular choice']
+              }
+            }
+          }
+        ]
+      }
+    ]
   }
 ]
 
