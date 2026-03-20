@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import Link from 'next/link'
-const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = { title: 'VidyaYantra — Learn Smarter', description: 'World-class e-learning for school kids Classes 1-10' }
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-slate-900`}>
+      <body className="font-sans bg-slate-900">
         <nav className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-xl border-b border-white/10">
           <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
