@@ -890,6 +890,475 @@ export const courses: Course[] = [
       }
     ]
   }
+  ,
+  {
+    id: 'c1-english',
+    title: 'Class 1 - English',
+    description: 'Start your English journey! Learn the alphabet, simple words, and fun sentences with pictures and stories.',
+    grade: '1-2',
+    subject: 'English',
+    icon: '📖',
+    color: 'bg-purple-500',
+    totalLessons: 8,
+    totalDuration: '4 hours',
+    xpReward: 400,
+    modules: [
+      {
+        id: 'c1en-m1',
+        title: 'Alphabet & Sounds',
+        lessons: [
+          {
+            id: 'c1en-1-1',
+            title: 'A to Z - The Alphabet Song! 🎵',
+            type: 'video',
+            duration: '10 min',
+            xp: 30,
+            content: {
+              overview: 'Sing and learn all 26 letters of the English alphabet! Each letter comes with a fun animal or object to help you remember.',
+              keyPoints: ['Learn all 26 letters', 'Big letters (CAPITAL) and small letters', 'Each letter makes a special sound'],
+              videoTitle: 'The Alphabet Song Adventure',
+              videoDuration: '10:00',
+              quiz: [
+                { id: 1, question: 'Which letter comes after "C"?', options: ['A', 'B', 'D', 'E'], correct: 2, explanation: 'A, B, C, D! The letter D comes after C. Great job!' },
+                { id: 2, question: '"A" is for Apple 🍎. "B" is for...?', options: ['Cat', 'Ball', 'Dog', 'Egg'], correct: 1, explanation: 'B is for Ball! 🏀 Ball starts with the letter B.' }
+              ]
+            }
+          },
+          {
+            id: 'c1en-1-2',
+            title: 'Vowels - A E I O U! 🌟',
+            type: 'exercise',
+            duration: '8 min',
+            xp: 35,
+            content: {
+              overview: 'Meet the 5 special letters called vowels: A, E, I, O, U. They are in almost every word we speak!',
+              keyPoints: ['5 vowels: A, E, I, O, U', 'Vowels are in every word', 'Find vowels in simple words'],
+              exercise: {
+                title: 'Vowel Hunt Game',
+                instructions: 'Look at each picture word. Circle all the vowels you can find! Example: C-A-T has the vowel A.',
+                hints: ['Remember: A, E, I, O, U are vowels', 'Say the word out loud to hear the vowel sound', 'Every word has at least one vowel']
+              }
+            }
+          }
+        ]
+      },
+      {
+        id: 'c1en-m2',
+        title: 'Simple Words & Sentences',
+        lessons: [
+          {
+            id: 'c1en-2-1',
+            title: 'Three-Letter Words - CVC Fun! 🐱',
+            type: 'reading',
+            duration: '12 min',
+            xp: 40,
+            content: {
+              overview: 'Learn to read short words like CAT, DOG, SUN, HEN! These 3-letter words have a consonant, vowel, and consonant.',
+              keyPoints: ['Read 3-letter CVC words', 'Blend letter sounds together', 'Match words to pictures'],
+              quiz: [
+                { id: 1, question: 'What word does C-A-T spell?', options: ['Cut', 'Cat', 'Cot', 'Cit'], correct: 1, explanation: 'C + A + T = CAT 🐱 A cat says meow!' },
+                { id: 2, question: 'Which picture matches the word "SUN"?', options: ['🌙 Moon', '⭐ Star', '☀️ Sun', '🌧️ Rain'], correct: 2, explanation: 'SUN ☀️ is the big bright light in the sky during daytime!' }
+              ]
+            }
+          },
+          {
+            id: 'c1en-2-2',
+            title: 'My First Sentences! ✍️',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 45,
+            content: {
+              overview: 'Put words together to make sentences! A sentence starts with a capital letter and ends with a full stop.',
+              keyPoints: ['A sentence has a subject and action', 'Start with a capital letter', 'End with a full stop (.)'],
+              exercise: {
+                title: 'Sentence Builder Game',
+                instructions: 'Drag the words into the correct order to make a sentence. Then write it with a capital letter at the start!',
+                hints: ['Who is doing the action? That comes first', 'What are they doing? That comes next', 'Remember the full stop at the end!']
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c1-hindi',
+    title: 'Class 1 - Hindi',
+    description: 'हिंदी सीखो! Varnamala, simple shabda, and vakya through colorful pictures and fun activities.',
+    grade: '1-2',
+    subject: 'Hindi',
+    icon: '🕉️',
+    color: 'bg-orange-500',
+    totalLessons: 8,
+    totalDuration: '4 hours',
+    xpReward: 400,
+    modules: [
+      {
+        id: 'c1hi-m1',
+        title: 'Varnamala - स्वर और व्यंजन',
+        lessons: [
+          {
+            id: 'c1hi-1-1',
+            title: 'स्वर - अ, आ, इ, ई... 🌈',
+            type: 'video',
+            duration: '10 min',
+            xp: 30,
+            content: {
+              overview: 'हिंदी के 11 स्वर सीखो! Learn the vowels of Hindi with colorful pictures and fun songs that make learning easy.',
+              keyPoints: ['11 Hindi vowels (स्वर)', 'Each vowel has its own sound', 'स्वर appear at the start of words'],
+              videoTitle: 'Hindi Swar - Animated Song',
+              videoDuration: '10:00',
+              quiz: [
+                { id: 1, question: '"अ" से क्या बनता है? ("A" is for...)', options: ['आम (Mango) 🥭', 'अनार (Pomegranate) 🍎', 'इमली (Tamarind)', 'उल्लू (Owl) 🦉'], correct: 1, explanation: '"अ" से अनार! 🍎 Anaar starts with the vowel "अ". Great!' },
+                { id: 2, question: 'Hindi mein kitne swar hote hain? (How many vowels in Hindi?)', options: ['10', '11', '13', '26'], correct: 1, explanation: 'Hindi mein 11 swar hote hain: अ, आ, इ, ई, उ, ऊ, ए, ऐ, ओ, औ, अं' }
+              ]
+            }
+          },
+          {
+            id: 'c1hi-1-2',
+            title: 'व्यंजन - क, ख, ग, घ... ✨',
+            type: 'exercise',
+            duration: '12 min',
+            xp: 40,
+            content: {
+              overview: 'Hindi ke 33 vyanjan (consonants) seekho! Start with the first row: क, ख, ग, घ, ङ with picture clues.',
+              keyPoints: ['33 Hindi consonants (व्यंजन)', 'क to ञ - first group', 'Each letter with a picture word'],
+              exercise: {
+                title: 'Vyanjan Matching Game',
+                instructions: 'Match each Hindi letter to its picture! क - कमल (lotus), ख - खरगोश (rabbit), ग - गाय (cow)...',
+                hints: ['Say the letter sound out loud', 'The picture word starts with that letter', 'Trace the letter with your finger first']
+              }
+            }
+          }
+        ]
+      },
+      {
+        id: 'c1hi-m2',
+        title: 'शब्द और वाक्य',
+        lessons: [
+          {
+            id: 'c1hi-2-1',
+            title: 'सरल शब्द - दो अक्षर के शब्द 🌸',
+            type: 'reading',
+            duration: '10 min',
+            xp: 40,
+            content: {
+              overview: 'Seekho simple 2-letter Hindi words like कल, फल, जल, घर! These words use the basic consonant sounds.',
+              keyPoints: ['Read 2-letter Hindi words', 'Combine consonant + vowel sounds', 'Match Hindi words to pictures'],
+              quiz: [
+                { id: 1, question: '"घर" ka matlab kya hai? (What does "घर" mean?)', options: ['Water 💧', 'Home 🏠', 'Fruit 🍎', 'Sun ☀️'], correct: 1, explanation: '"घर" means home or house! We all live in a घर. 🏠' },
+                { id: 2, question: '"फल" means...', options: ['Flower 🌸', 'Leaf 🍃', 'Fruit 🍎', 'Tree 🌳'], correct: 2, explanation: '"फल" means fruit! 🍎 Aam, kela, angoor are all फल.' }
+              ]
+            }
+          },
+          {
+            id: 'c1hi-2-2',
+            title: 'छोटे वाक्य बनाओ! 📝',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 45,
+            content: {
+              overview: 'Words ko jodke sentences banao! Learn simple Hindi sentences like "यह एक बिल्ली है" and "राम खाना खाता है".',
+              keyPoints: ['Hindi sentence structure', 'Subject + Object + Verb', 'Simple present tense sentences'],
+              exercise: {
+                title: 'Vakya Banao Game',
+                instructions: 'Drag the Hindi words in the correct order to make a sentence. Use the pictures for clues!',
+                hints: ['Hindi mein verb (kriya) last mein aati hai', 'Subject (naam) pehle aata hai', 'Example: राम + खेलता + है = राम खेलता है']
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c2-maths',
+    title: 'Class 2 - Mathematics',
+    description: 'Level up your maths! Addition & subtraction up to 100, introduction to multiplication, and fun number games.',
+    grade: '1-2',
+    subject: 'Mathematics',
+    icon: '➕',
+    color: 'bg-blue-600',
+    totalLessons: 9,
+    totalDuration: '5 hours',
+    xpReward: 500,
+    modules: [
+      {
+        id: 'c2m-m1',
+        title: 'Addition & Subtraction to 100',
+        lessons: [
+          {
+            id: 'c2m-1-1',
+            title: 'Adding Big Numbers - Tens & Ones! 🎉',
+            type: 'video',
+            duration: '12 min',
+            xp: 45,
+            content: {
+              overview: 'Learn to add 2-digit numbers by breaking them into tens and ones! See colorful blocks come together as you add.',
+              keyPoints: ['Add 2-digit numbers', 'Line up tens and ones columns', 'Carry over when ones exceed 9'],
+              videoTitle: 'Big Number Addition Adventure',
+              videoDuration: '12:00',
+              quiz: [
+                { id: 1, question: '24 + 35 = ?', options: ['49', '59', '58', '69'], correct: 1, explanation: 'Ones: 4+5=9. Tens: 2+3=5. So 24+35 = 59! 🎉' },
+                { id: 2, question: '47 + 26 = ?', options: ['63', '73', '72', '83'], correct: 1, explanation: 'Ones: 7+6=13, write 3 carry 1. Tens: 4+2+1=7. Answer = 73! 🌟' }
+              ]
+            }
+          },
+          {
+            id: 'c2m-1-2',
+            title: 'Subtraction up to 100 🎯',
+            type: 'exercise',
+            duration: '12 min',
+            xp: 45,
+            content: {
+              overview: 'Take away tens and ones to find the difference! Use virtual base-10 blocks to see subtraction happen right before your eyes.',
+              keyPoints: ['Subtract 2-digit numbers', 'Borrowing from tens place', 'Check subtraction using addition'],
+              exercise: {
+                title: 'Number Line Subtraction',
+                instructions: 'Use the number line to jump backwards! Start at the bigger number and hop back the smaller number. Where do you land?',
+                hints: ['Start at the bigger number', 'Jump back (left) by the number you subtract', 'Count your jumps carefully!']
+              }
+            }
+          },
+          {
+            id: 'c2m-1-3',
+            title: 'Adding & Subtracting - Word Problems! 📖',
+            type: 'quiz',
+            duration: '10 min',
+            xp: 50,
+            content: {
+              overview: 'Solve fun story problems! Mia has 45 stickers and gets 28 more - how many does she have? Use addition and subtraction to find out!',
+              keyPoints: ['Read word problems carefully', 'Identify add or subtract', 'Write the number sentence'],
+              quiz: [
+                { id: 1, question: 'Riya had 63 chocolates 🍫. She gave 28 to friends. How many left?', options: ['35', '45', '91', '25'], correct: 0, explanation: '63 - 28 = 35. Riya has 35 chocolates left! 🍫' },
+                { id: 2, question: 'There are 37 red birds 🐦 and 45 blue birds. How many birds in all?', options: ['72', '82', '8', '92'], correct: 1, explanation: '37 + 45 = 82. There are 82 birds altogether! 🐦🐦' }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        id: 'c2m-m2',
+        title: 'Introduction to Multiplication',
+        lessons: [
+          {
+            id: 'c2m-2-1',
+            title: 'Multiplication as Repeated Addition ⭐',
+            type: 'video',
+            duration: '10 min',
+            xp: 50,
+            content: {
+              overview: '3 groups of 4 apples is the same as 4+4+4=12! Discover how multiplication is just a faster way to add equal groups.',
+              keyPoints: ['Multiplication = repeated addition', 'Groups of equal numbers', 'Use × sign'],
+              videoTitle: 'Multiplication Magic!',
+              videoDuration: '10:00',
+              quiz: [
+                { id: 1, question: '2 + 2 + 2 = 3 × ?', options: ['2', '3', '6', '4'], correct: 0, explanation: '2+2+2 means 3 groups of 2, which is 3 × 2 = 6! ⭐' },
+                { id: 2, question: '4 × 3 = ?', options: ['7', '43', '12', '8'], correct: 2, explanation: '4 × 3 = 4+4+4 = 12. Four groups of three makes twelve! 🌟' }
+              ]
+            }
+          },
+          {
+            id: 'c2m-2-2',
+            title: 'Times Tables 2 & 5 - Let\'s Memorise! 🏆',
+            type: 'exercise',
+            duration: '12 min',
+            xp: 55,
+            content: {
+              overview: 'Master the 2 times table and 5 times table with songs, skip counting, and fun games! These are the easiest tables to start with.',
+              keyPoints: ['2 times table (skip count by 2)', '5 times table (skip count by 5)', 'Use patterns to remember'],
+              exercise: {
+                title: 'Times Table Trainer',
+                instructions: 'Count by 2s: 2, 4, 6, 8, 10... Count by 5s: 5, 10, 15, 20, 25! Fill in the blanks in the multiplication table.',
+                hints: ['2 times table: always even numbers', '5 times table: ends in 0 or 5', 'Use your fingers to skip count!']
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c2-english',
+    title: 'Class 2 - English',
+    description: 'Grow your English skills! Reading comprehension, grammar basics, and writing simple sentences and paragraphs.',
+    grade: '1-2',
+    subject: 'English',
+    icon: '📝',
+    color: 'bg-purple-600',
+    totalLessons: 8,
+    totalDuration: '4 hours',
+    xpReward: 450,
+    modules: [
+      {
+        id: 'c2en-m1',
+        title: 'Reading Comprehension',
+        lessons: [
+          {
+            id: 'c2en-1-1',
+            title: 'The Little Seed - Read & Understand 🌱',
+            type: 'reading',
+            duration: '12 min',
+            xp: 40,
+            content: {
+              overview: 'Read a short story about a tiny seed that grows into a big tree! Answer questions to show you understood the story.',
+              keyPoints: ['Read the full story carefully', 'Answer who, what, where, why questions', 'Find the main idea of a story'],
+              quiz: [
+                { id: 1, question: 'What do good readers do when they don\'t understand a sentence?', options: ['Skip it', 'Re-read it slowly', 'Stop reading', 'Only look at pictures'], correct: 1, explanation: 'Good readers re-read confusing parts! Reading again often helps you understand. 📖' },
+                { id: 2, question: 'The "main idea" of a story is...', options: ['The last sentence', 'What the whole story is about', 'The first word', 'The title only'], correct: 1, explanation: 'The main idea is what the WHOLE story is mostly about. Great thinking! 🌟' }
+              ]
+            }
+          },
+          {
+            id: 'c2en-1-2',
+            title: 'New Words - Building My Vocabulary! 📚',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 35,
+            content: {
+              overview: 'Learn 20 exciting new words with pictures! The more words you know, the better you can read and write.',
+              keyPoints: ['Learn new words with pictures', 'Use context clues to guess meaning', 'Use new words in sentences'],
+              exercise: {
+                title: 'Word Wall Builder',
+                instructions: 'Match each picture to its word. Then use the word in your own sentence. Try to use 5 new words in a short story!',
+                hints: ['Look at the picture for clues about the word', 'Try using the word in a sentence you know', 'Practice saying the word out loud']
+              }
+            }
+          }
+        ]
+      },
+      {
+        id: 'c2en-m2',
+        title: 'Grammar Basics',
+        lessons: [
+          {
+            id: 'c2en-2-1',
+            title: 'Nouns & Pronouns - Names & Replacements! 🏷️',
+            type: 'video',
+            duration: '10 min',
+            xp: 45,
+            content: {
+              overview: 'A noun is a naming word! A pronoun replaces a noun so we don\'t repeat the same word. "Priya ran. She was fast." She replaces Priya!',
+              keyPoints: ['Nouns name people, places, and things', 'Pronouns replace nouns', 'Common pronouns: he, she, it, they, we'],
+              videoTitle: 'Nouns and Pronouns Explained',
+              videoDuration: '10:00',
+              quiz: [
+                { id: 1, question: 'Replace with pronoun: "The dog barked. ___ was loud."', options: ['He', 'She', 'It', 'They'], correct: 2, explanation: 'We use "It" for animals and things when we don\'t know their gender. The dog barked. It was loud! 🐕' },
+                { id: 2, question: 'Which is a NOUN in "The big elephant splashed water"?', options: ['big', 'splashed', 'The', 'elephant'], correct: 3, explanation: 'Elephant 🐘 is a noun - it names an animal! Big is an adjective and splashed is a verb.' }
+              ]
+            }
+          },
+          {
+            id: 'c2en-2-2',
+            title: 'Describing Words - Adjectives! 🌈',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 45,
+            content: {
+              overview: 'Adjectives make sentences colorful and interesting! Big, small, red, happy, soft - these words describe nouns.',
+              keyPoints: ['Adjectives describe nouns', 'Size, color, shape, feeling adjectives', 'Use adjectives to make sentences interesting'],
+              exercise: {
+                title: 'Adjective Artist',
+                instructions: 'Look at each picture. Choose the best adjectives to describe it! Then write a sentence using 2 adjectives.',
+                hints: ['Think about color, size, shape, or feeling', 'Adjectives go before the noun usually', 'Example: The BIG RED ball rolled away.']
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c2-science',
+    title: 'Class 2 - Science',
+    description: 'Explore the natural world! Learn about plants, animals, water, air, and how living things grow and survive.',
+    grade: '1-2',
+    subject: 'Science',
+    icon: '🌱',
+    color: 'bg-green-600',
+    totalLessons: 8,
+    totalDuration: '4 hours',
+    xpReward: 450,
+    modules: [
+      {
+        id: 'c2sc-m1',
+        title: 'Plants & Animals',
+        lessons: [
+          {
+            id: 'c2sc-1-1',
+            title: 'How Plants Grow 🌱➡️🌳',
+            type: 'video',
+            duration: '10 min',
+            xp: 35,
+            content: {
+              overview: 'Watch a seed sprout and grow into a plant! Learn the parts of a plant and what plants need to stay alive and healthy.',
+              keyPoints: ['Parts of a plant: root, stem, leaf, flower, fruit', 'Plants need sunlight, water, and soil', 'Plants make their own food using sunlight'],
+              videoTitle: 'A Plant\'s Amazing Life',
+              videoDuration: '10:00',
+              quiz: [
+                { id: 1, question: 'What do plants need to grow? 🌱', options: ['Only water', 'Only sunlight', 'Water, sunlight, and soil', 'Just soil'], correct: 2, explanation: 'Plants need water 💧, sunlight ☀️, and soil 🌍 to grow strong and healthy!' },
+                { id: 2, question: 'Which part of the plant drinks water from the soil?', options: ['Leaf', 'Flower', 'Root', 'Stem'], correct: 2, explanation: 'Roots go deep into the soil to drink water and hold the plant in place! 🌱' }
+              ]
+            }
+          },
+          {
+            id: 'c2sc-1-2',
+            title: 'Animals - Where They Live & What They Eat 🐘🐠',
+            type: 'lab',
+            duration: '12 min',
+            xp: 45,
+            content: {
+              overview: 'Animals live in different habitats - forests, oceans, deserts, farms! Each animal eats food that matches where it lives.',
+              keyPoints: ['Animal habitats: forest, water, farm, desert', 'What different animals eat', 'How animals protect themselves'],
+              quiz: [
+                { id: 1, question: 'A fish lives in...', options: ['Forest 🌳', 'Desert 🏜️', 'Water 🌊', 'Sky ☁️'], correct: 2, explanation: 'Fish live in water! 🐠 They breathe through gills and swim using fins.' },
+                { id: 2, question: 'Which animal eats grass? 🌿', options: ['Tiger 🐯', 'Cow 🐄', 'Eagle 🦅', 'Shark 🦈'], correct: 1, explanation: 'Cows 🐄 eat grass! Animals that eat only plants are called herbivores.' }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        id: 'c2sc-m2',
+        title: 'Water & Air Around Us',
+        lessons: [
+          {
+            id: 'c2sc-2-1',
+            title: 'Water - Where It Comes From 💧',
+            type: 'video',
+            duration: '10 min',
+            xp: 40,
+            content: {
+              overview: 'Water falls as rain, flows in rivers, and sits in lakes and oceans! Learn the water cycle and why saving water is so important.',
+              keyPoints: ['Sources of water: rain, rivers, lakes, wells', 'Uses of water for living things', 'Save water - it is precious!'],
+              videoTitle: 'The Amazing Water Cycle',
+              videoDuration: '10:00',
+              quiz: [
+                { id: 1, question: 'Which of these is a source of water? 💧', options: ['Rock', 'River', 'Sand', 'Wind'], correct: 1, explanation: 'Rivers are a great source of freshwater! 🌊 Fish live there and we use river water for drinking and farming.' },
+                { id: 2, question: 'Why should we save water? 💧', options: ['Water is heavy', 'Water is limited and precious', 'Water is cold', 'Water is wet'], correct: 1, explanation: 'Freshwater is limited! 💧 We must save water so there is enough for everyone and all living things.' }
+              ]
+            }
+          },
+          {
+            id: 'c2sc-2-2',
+            title: 'Air is Everywhere! 🌬️',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 40,
+            content: {
+              overview: 'We can\'t see air but it is all around us! Air helps us breathe, makes wind, and keeps balloons and tyres inflated.',
+              keyPoints: ['Air is all around us even if we cannot see it', 'We breathe air (oxygen) to live', 'Moving air is called wind'],
+              exercise: {
+                title: 'Air Explorer Activity',
+                instructions: 'Try these activities to prove air exists: Blow into a bag and seal it. Fan yourself with paper. Watch leaves move in the wind. Draw what you observe!',
+                hints: ['Can you feel the air when you fan yourself?', 'What makes the balloon stay big?', 'What makes the leaves on trees move?']
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
 ]
 
 export function getAllCourses(): Course[] {
