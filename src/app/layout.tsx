@@ -1,23 +1,33 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-
+import Link from 'next/link'
 const inter = Inter({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-  title: 'VidyaYantra - The Interactive Knowledge Engine',
-  description: 'Interactive L&D Portal with Live Coding, AI Tutor & Gamification. Learn by doing with 6 types of exercises, in-browser coding sandboxes, and AI-powered tutoring.',
-  keywords: ['learning', 'coding', 'interactive', 'AI tutor', 'gamification', 'L&D'],
-}
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export const metadata: Metadata = { title: 'VidyaYantra — Learn Smarter', description: 'World-class e-learning for school kids Classes 1-10' }
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} bg-slate-900`}>
+        <nav className="sticky top-0 z-40 bg-slate-900/80 backdrop-blur-xl border-b border-white/10">
+          <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-2">
+              <span className="text-2xl">🎓</span>
+              <span className="text-white font-bold text-lg">VidyaYantra</span>
+            </Link>
+            <div className="flex items-center gap-6">
+              <Link href="/courses" className="text-slate-400 hover:text-white text-sm font-medium transition-colors">📚 Courses</Link>
+              <Link href="/dashboard" className="text-slate-400 hover:text-white text-sm font-medium transition-colors">🏅 Dashboard</Link>
+              <Link href="/playground" className="text-slate-400 hover:text-white text-sm font-medium transition-colors">🔬 Lab</Link>
+              <Link href="/courses" className="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-all">Start Learning</Link>
+            </div>
+          </div>
+        </nav>
+        {children}
+        <footer className="border-t border-white/10 py-8 text-center text-slate-500 text-sm mt-16">
+          <p>🎓 VidyaYantra — Making learning magical for every child ✨</p>
+          <p className="mt-1">Built with love for Classes 1-10 📚</p>
+        </footer>
+      </body>
     </html>
   )
 }
