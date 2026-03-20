@@ -1,149 +1,130 @@
-import { BookOpen, Trophy, Flame, Target, Clock, Star, Play, BarChart3, Award, Zap } from 'lucide-react'
+'use client'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-
-const userStats = {
-  name: 'Learner',
-  xp: 4800,
-  level: 12,
-  streak: 7,
-  coursesCompleted: 5,
-  coursesInProgress: 3,
-  hoursLearned: 48,
-  badges: 14,
-}
-
-const inProgress = [
-  { id: 1, title: 'React Mastery', progress: 65, nextLesson: 'State Management Patterns', xp: 120 },
-  { id: 4, title: 'TypeScript Deep Dive', progress: 30, nextLesson: 'Generics & Utility Types', xp: 80 },
-  { id: 7, title: 'Next.js Full-Stack', progress: 15, nextLesson: 'Server Components', xp: 60 },
-]
-
-const achievements = [
-  { icon: Flame, title: '7-Day Streak', desc: 'Learn for 7 days in a row', color: 'text-orange-400' },
-  { icon: Trophy, title: 'First Course', desc: 'Complete your first course', color: 'text-yellow-400' },
-  { icon: Zap, title: 'Speed Learner', desc: 'Complete a module in under 30min', color: 'text-cyan-400' },
-  { icon: Star, title: 'Perfect Score', desc: 'Get 100% on a quiz', color: 'text-indigo-400' },
-]
-
-const leaderboard = [
-  { rank: 1, name: 'Priya M.', xp: 12400, streak: 30 },
-  { rank: 2, name: 'Arjun K.', xp: 11200, streak: 22 },
-  { rank: 3, name: 'Sarah L.', xp: 9800, streak: 18 },
-  { rank: 4, name: 'You', xp: 4800, streak: 7, isUser: true },
-]
+import { getProgress, resetProgress, ACHIEVEMENTS, type UserProgress } from '@/lib/progress'
+import { courses, getCourse } from '@/lib/courseData'
+import AiTutor from '@/components/AiTutor'
 
 export default function Dashboard() {
+  const [progress, setProgress] = useState<UserProgress | null>(null)
+
+  useEffect(() => {
+    setProgress(getProgress())
+  }, [])
+
+  if (!progress) return <div className="min-h-screen bg-slate-900 flex items-center justify-center text-white">Loading...</div>
+
+  const totalCompleted = Object.values(progress.courses).reduce(
+    (sum, c) => sum + Object.values(c.lessons).filter(l => l.completed).length, 0
+  )
+  const activeCourses = Object.keys(progress.courses).length
+  const xpToNextLevel = ((progress.level) * 500) - progress.totalXp
+  const levelProgress = ((progress.totalXp % 500) / 500) * 100
+
   return (
-    <main className="min-h-screen">
-      <nav className="flex items-center justify-between px-6 md:px-12 py-4 border-b border-white/10 backdrop-blur-md sticky top-0 z-50">
-        <Link href="/" className="flex items-center gap-2">
-          <BookOpen className="w-8 h-8 text-indigo-400" />
-          <span className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">VidyaYantra</span>
-        </Link>
-        <div className="hidden md:flex items-center gap-6 text-sm text-slate-400">
-          <Link href="/courses" className="hover:text-white transition">Courses</Link>
-          <Link href="/dashboard" className="text-white font-medium">Dashboard</Link>
-          <Link href="#" className="hover:text-white transition">Leaderboard</Link>
-          <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm font-bold">L</div>
-        </div>
-      </nav>
+    <main className="min-h-screen bg-slate-900">
+      {/* Header */}
+      <div className="px-6 md:px-12 py-8 border-b border-white/10">
+        <Link href="/" className="text-slate-400 hover:text-white text-sm mb-4 inline-block">← Home</Link>
+        <h1 className="text-3xl font-bold text-white">🎯 My Dashboard</h1>
+        <p className="text-slate-400">Track your learning progress</p>
+      </div>
 
-      <div className="px-4 md:px-12 py-8 max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-white mb-2">Welcome back, {userStats.name}!</h1>
-        <p className="text-slate-400 mb-8">Keep up the momentum. You are on a {userStats.streak}-day streak!</p>
-
-        {/* Stats Grid */}
+      <div className="px-6 md:px-12 py-8 max-w-6xl">
+        {/* Stats Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="glass rounded-xl p-4 text-center">
-            <Trophy className="w-6 h-6 text-yellow-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white">{userStats.xp.toLocaleString()}</div>
-            <div className="text-xs text-slate-500">Total XP</div>
+          {[
+            { label: 'Total XP', value: progress.totalXp.toLocaleString(), icon: '⚡', color: 'text-yellow-400' },
+            { label: 'Level', value: progress.level, icon: '🎮', color: 'text-indigo-400' },
+            { label: 'Streak', value: `${progress.streak} days`, icon: '🔥', color: 'text-orange-400' },
+            { label: 'Lessons Done', value: totalCompleted, icon: '✅', color: 'text-green-400' },
+          ].map(s => (
+            <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-5 text-center">
+              <div className="text-3xl mb-2">{s.icon}</div>
+              <div className={`text-2xl font-bold ${s.color}`}>{s.value}</div>
+              <div className="text-slate-400 text-xs mt-1">{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Level Progress */}
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8">
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="text-white font-semibold">Level {progress.level} Progress</h2>
+            <span className="text-xs text-slate-400">{xpToNextLevel} XP to Level {progress.level + 1}</span>
           </div>
-          <div className="glass rounded-xl p-4 text-center">
-            <Flame className="w-6 h-6 text-orange-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white">{userStats.streak}</div>
-            <div className="text-xs text-slate-500">Day Streak</div>
-          </div>
-          <div className="glass rounded-xl p-4 text-center">
-            <Target className="w-6 h-6 text-green-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white">{userStats.coursesCompleted}</div>
-            <div className="text-xs text-slate-500">Completed</div>
-          </div>
-          <div className="glass rounded-xl p-4 text-center">
-            <Clock className="w-6 h-6 text-cyan-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-white">{userStats.hoursLearned}h</div>
-            <div className="text-xs text-slate-500">Hours Learned</div>
+          <div className="w-full bg-white/10 rounded-full h-3">
+            <div className="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full transition-all" style={{ width: `${levelProgress}%` }} />
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Continue Learning */}
-          <div className="lg:col-span-2">
-            <h2 className="text-xl font-bold text-white mb-4">Continue Learning</h2>
-            <div className="space-y-4">
-              {inProgress.map((c) => (
-                <Link href={`/courses/${c.id}`} key={c.id} className="glass glass-hover rounded-xl p-5 flex items-center justify-between cursor-pointer block">
-                  <div className="flex-1">
-                    <h3 className="text-white font-semibold mb-1">{c.title}</h3>
-                    <p className="text-xs text-slate-500 mb-2">Next: {c.nextLesson}</p>
-                    <div className="w-full bg-slate-700 rounded-full h-2">
-                      <div className="bg-indigo-500 h-2 rounded-full transition-all" style={{ width: `${c.progress}%` }} />
+        {/* Active Courses */}
+        <div className="mb-8">
+          <h2 className="text-white font-bold text-xl mb-4">📚 Active Courses ({activeCourses})</h2>
+          {activeCourses === 0 ? (
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center">
+              <p className="text-slate-400 mb-4">No courses started yet!</p>
+              <Link href="/courses" className="bg-indigo-600 text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-indigo-500">
+                Browse Courses
+              </Link>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {Object.entries(progress.courses).map(([courseId, cp]) => {
+                const course = getCourse(courseId)
+                if (!course) return null
+                const completed = Object.values(cp.lessons).filter(l => l.completed).length
+                const total = course.modules.reduce((s, m) => s + m.lessons.length, 0)
+                const pct = Math.round((completed / total) * 100)
+                return (
+                  <Link href={`/courses/${courseId}`} key={courseId}
+                    className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/8 transition-all group">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-3xl">{course.icon}</span>
+                      <div className="flex-1">
+                        <h3 className="text-white font-semibold group-hover:text-indigo-300">{course.title}</h3>
+                        <p className="text-xs text-slate-400">{completed}/{total} lessons</p>
+                      </div>
+                      <span className="text-lg font-bold text-indigo-400">{pct}%</span>
                     </div>
-                    <span className="text-xs text-slate-500 mt-1">{c.progress}% complete</span>
-                  </div>
-                  <div className="ml-4 flex flex-col items-center gap-1">
-                    <Play className="w-8 h-8 text-indigo-400" />
-                    <span className="text-xs text-indigo-400">+{c.xp} XP</span>
-                  </div>
-                </Link>
-              ))}
+                    <div className="w-full bg-white/10 rounded-full h-2">
+                      <div className="bg-indigo-500 h-2 rounded-full" style={{ width: `${pct}%` }} />
+                    </div>
+                  </Link>
+                )
+              })}
             </div>
+          )}
+        </div>
 
-            {/* Achievements */}
-            <h2 className="text-xl font-bold text-white mb-4 mt-8">Recent Achievements</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {achievements.map((a) => (
-                <div key={a.title} className="glass rounded-xl p-4 text-center">
-                  <a.icon className={`w-8 h-8 mx-auto mb-2 ${a.color}`} />
-                  <h3 className="text-sm font-medium text-white">{a.title}</h3>
-                  <p className="text-xs text-slate-500 mt-1">{a.desc}</p>
+        {/* Achievements */}
+        <div className="mb-8">
+          <h2 className="text-white font-bold text-xl mb-4">🏆 Achievements ({progress.achievements.length}/{Object.keys(ACHIEVEMENTS).length})</h2>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+            {Object.entries(ACHIEVEMENTS).map(([key, ach]) => {
+              const unlocked = progress.achievements.includes(key)
+              return (
+                <div key={key} className={`rounded-xl p-4 text-center border transition-all ${
+                  unlocked ? 'bg-yellow-500/10 border-yellow-500/30' : 'bg-white/3 border-white/5 opacity-40'
+                }`}>
+                  <div className="text-3xl mb-1">{ach.icon}</div>
+                  <div className={`text-xs font-semibold ${unlocked ? 'text-yellow-300' : 'text-slate-500'}`}>{ach.title}</div>
+                  <div className="text-[10px] text-slate-500 mt-0.5">{ach.desc}</div>
                 </div>
-              ))}
-            </div>
+              )
+            })}
           </div>
+        </div>
 
-          {/* Leaderboard Sidebar */}
-          <div>
-            <h2 className="text-xl font-bold text-white mb-4">Leaderboard</h2>
-            <div className="glass rounded-xl p-4">
-              {leaderboard.map((u) => (
-                <div key={u.rank} className={`flex items-center justify-between py-3 ${u.rank < 4 ? 'border-b border-white/5' : ''} ${u.isUser ? 'bg-indigo-500/10 -mx-4 px-4 rounded-lg' : ''}`}>
-                  <div className="flex items-center gap-3">
-                    <span className={`text-lg font-bold ${u.rank === 1 ? 'text-yellow-400' : u.rank === 2 ? 'text-slate-300' : u.rank === 3 ? 'text-orange-400' : 'text-indigo-400'}`}>#{u.rank}</span>
-                    <span className={`text-sm ${u.isUser ? 'text-indigo-300 font-medium' : 'text-white'}`}>{u.name}</span>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm font-medium text-white">{u.xp.toLocaleString()} XP</div>
-                    <div className="text-xs text-slate-500">{u.streak}d streak</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Level Progress */}
-            <div className="glass rounded-xl p-4 mt-4">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-slate-400">Level {userStats.level}</span>
-                <span className="text-sm text-indigo-400">Level {userStats.level + 1}</span>
-              </div>
-              <div className="w-full bg-slate-700 rounded-full h-3">
-                <div className="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full" style={{ width: '60%' }} />
-              </div>
-              <p className="text-xs text-slate-500 mt-2 text-center">1,200 XP to next level</p>
-            </div>
-          </div>
+        {/* Reset */}
+        <div className="text-center pt-4 border-t border-white/10">
+          <button onClick={() => { resetProgress(); setProgress(getProgress()) }}
+            className="text-xs text-red-400 hover:text-red-300">
+            🗑️ Reset All Progress
+          </button>
         </div>
       </div>
+      <AiTutor />
     </main>
   )
 }
