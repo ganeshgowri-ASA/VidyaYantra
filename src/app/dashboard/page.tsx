@@ -56,7 +56,7 @@ export default function DashboardPage() {
         {/* Achievements */}
         <div className="mb-8">
           <h2 className="text-xl font-bold mb-4">🏆 Achievements</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
             {ACHIEVEMENTS.map(a => {
               const earned = progress.achievements.includes(a.id)
               return (

@@ -26,21 +26,36 @@ export default function CoursesPage() {
 
   return (
     <main className="min-h-screen bg-slate-900">
-      {/* Header */}
-      <div className="px-6 md:px-12 py-8 border-b border-white/10">
-        <Link href="/" className="text-slate-400 hover:text-white text-sm mb-4 inline-block">← Back to Home</Link>
-        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">🏢 School Courses</h1>
-        <p className="text-slate-400">Interactive lessons, quizzes & labs for Classes 1-10</p>
-      </div>
+      <div className="max-w-7xl mx-auto px-6 py-10">
+        {/* Header */}
+        <div className="pt-4 pb-8 border-b border-white/10 mb-8">
+          <Link href="/" className="text-slate-400 hover:text-white text-sm mb-4 inline-block">← Back to Home</Link>
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">🏢 School Courses</h1>
+          <p className="text-slate-400">Interactive lessons, quizzes & labs for Classes 1-10</p>
+        </div>
 
-      {/* Grade Tabs */}
-      <div className="px-6 md:px-12 py-6">
+        {/* Stats Bar */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          {[{label: 'Total Courses', val: courses.length, icon: '📚'},
+            {label: 'Subjects', val: [...new Set(courses.map(c=>c.subject))].length, icon: '🎯'},
+            {label: 'Total Lessons', val: courses.reduce((a,c)=>a+c.totalLessons,0), icon: '▶️'},
+            {label: 'Max XP', val: courses.reduce((a,c)=>a+c.xpReward,0).toLocaleString(), icon: '⚡'}
+          ].map(s => (
+            <div key={s.label} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+              <div className="text-2xl mb-1">{s.icon}</div>
+              <div className="text-white font-bold text-xl">{s.val}</div>
+              <div className="text-slate-400 text-xs">{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Grade Tabs */}
         <div className="flex flex-wrap gap-3 mb-8">
           {grades.map(grade => (
             <button
               key={grade}
               onClick={() => setActiveGrade(grade)}
-              className={`px-5 py-2.5 rounded-xl font-semibold text-sm transition-all border ${
+              className={`px-5 py-2.5 rounded-full font-semibold text-sm transition-all border ${
                 activeGrade === grade
                   ? 'bg-indigo-600 text-white border-indigo-500 shadow-lg shadow-indigo-500/25'
                   : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10 hover:text-white'
@@ -48,11 +63,12 @@ export default function CoursesPage() {
             >
               {gradeEmojis[grade]} {getGradeLabel(grade)}
             </button>
+
           ))}
         </div>
 
         {/* Course Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredCourses.length === 0 ? (
             <div className="col-span-3 text-center py-16">
               <div className="text-5xl mb-4">📚</div>
@@ -99,20 +115,6 @@ export default function CoursesPage() {
           )}
         </div>
 
-        {/* Stats Bar */}
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[{label: 'Total Courses', val: courses.length, icon: '📚'},
-            {label: 'Subjects', val: [...new Set(courses.map(c=>c.subject))].length, icon: '🎯'},
-            {label: 'Total Lessons', val: courses.reduce((a,c)=>a+c.totalLessons,0), icon: '▶️'},
-            {label: 'Max XP', val: courses.reduce((a,c)=>a+c.xpReward,0).toLocaleString(), icon: '⚡'}
-          ].map(s => (
-            <div key={s.label} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
-              <div className="text-2xl mb-1">{s.icon}</div>
-              <div className="text-white font-bold text-xl">{s.val}</div>
-              <div className="text-slate-400 text-xs">{s.label}</div>
-            </div>
-          ))}
-        </div>
       </div>
     </main>
   )
