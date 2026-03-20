@@ -892,6 +892,10 @@ export const courses: Course[] = [
   }
 ]
 
+export function getAllCourses(): Course[] {
+  return courses
+}
+
 export function getCourse(id: string): Course | undefined {
   return courses.find(c => c.id === id)
 }
