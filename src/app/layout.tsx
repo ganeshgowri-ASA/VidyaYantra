@@ -7,7 +7,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="font-sans bg-slate-900">
         <nav className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-xl border-b border-white/10">
-          <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
               <span className="text-2xl">🎓</span>
               <span className="text-white font-bold text-lg">VidyaYantra</span>
@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </nav>
         {children}
-        <footer className="border-t border-white/10 py-8 text-center text-slate-500 text-sm mt-16">
+        <footer className="border-t border-white/10 py-8 text-center text-slate-500 text-sm">
           <p>🎓 VidyaYantra — Making learning magical for every child ✨</p>
           <p className="mt-1">Built with love for Classes 1-10 📚</p>
         </footer>
