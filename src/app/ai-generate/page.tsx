@@ -29,7 +29,7 @@ export default function AiGeneratePage() {
       } else {
         setResult(data.lesson || data)
       }
-    } catch (e) {
+    } catch {
       setResult({ error: 'Failed to generate. Please try again.' })
     }
     setLoading(false)
@@ -42,33 +42,38 @@ export default function AiGeneratePage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-900 text-white">
-      <div className="max-w-4xl mx-auto px-6 py-12">
+    <main className="min-h-screen bg-[#0F0F1A] text-white flex flex-col">
+      <div className="max-w-2xl mx-auto w-full px-6 py-12">
+        {/* Header */}
         <div className="mb-10 text-center">
-          <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-2 text-indigo-400 text-sm mb-6">
-            Powered by AI
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 mb-5">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
-          <h1 className="text-4xl font-extrabold mb-3">AI Lesson Generator</h1>
-          <p className="text-slate-400 text-lg">Generate interactive lesson content instantly — like Articulate 360, built for Indian schools</p>
+          <h1 className="text-3xl font-bold mb-2">AI Lesson Generator</h1>
+          <p className="text-gray-500 text-base">Generate interactive lesson content instantly for any topic</p>
         </div>
 
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-8">
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div className="md:col-span-2">
-              <label className="block text-sm font-semibold text-slate-300 mb-2">Topic or Concept</label>
-              <input
-                value={topic}
-                onChange={e => setTopic(e.target.value)}
-                placeholder="e.g. Photosynthesis, Fractions, Water Cycle..."
-                className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 text-base"
-              />
-            </div>
+        {/* Form Card */}
+        <div className="bg-[#16213E] border border-[#2A2A4A] rounded-xl p-6 md:p-8 mb-8">
+          {/* Topic Input */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-300 mb-2">Topic or Concept</label>
+            <input
+              value={topic}
+              onChange={e => setTopic(e.target.value)}
+              placeholder="e.g. Photosynthesis, Fractions, Water Cycle..."
+              className="w-full bg-[#0F0F1A] border border-[#2A2A4A] rounded-lg px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 text-base transition-all duration-200"
+            />
+          </div>
+
+          {/* 2-col grid: Class + Subject */}
+          <div className="grid grid-cols-2 gap-4 mb-6">
             <div>
-              <label className="block text-sm font-semibold text-slate-300 mb-2">Class / Grade</label>
+              <label className="block text-sm font-medium text-gray-300 mb-2">Class / Grade</label>
               <select
                 value={grade}
                 onChange={e => setGrade(e.target.value)}
-                className="w-full bg-slate-800 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-[#0F0F1A] border border-[#2A2A4A] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500/50 transition-all duration-200"
               >
                 {[1,2,3,4,5,6,7,8,9,10].map(g => (
                   <option key={g} value={String(g)}>Class {g}</option>
@@ -76,87 +81,106 @@ export default function AiGeneratePage() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-semibold text-slate-300 mb-2">Subject</label>
+              <label className="block text-sm font-medium text-gray-300 mb-2">Subject</label>
               <select
                 value={subject}
                 onChange={e => setSubject(e.target.value)}
-                className="w-full bg-slate-800 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-[#0F0F1A] border border-[#2A2A4A] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500/50 transition-all duration-200"
               >
                 {subjects.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
             </div>
-            <div>
-              <label className="block text-sm font-semibold text-slate-300 mb-2">Difficulty</label>
-              <div className="flex gap-3">
-                {['Easy', 'Medium', 'Hard'].map(d => (
-                  <button
-                    key={d}
-                    onClick={() => setDifficulty(d)}
-                    className={`flex-1 py-3 rounded-xl font-semibold text-sm transition-all ${difficulty === d ? 'bg-indigo-600 text-white' : 'bg-white/10 text-slate-400 hover:bg-white/20'}`}
-                  >
-                    {d}
-                  </button>
-                ))}
-              </div>
+          </div>
+
+          {/* Difficulty Segmented Control */}
+          <div className="mb-8">
+            <label className="block text-sm font-medium text-gray-300 mb-2">Difficulty</label>
+            <div className="flex gap-2 bg-[#0F0F1A] p-1 rounded-lg border border-[#2A2A4A]">
+              {['Easy', 'Medium', 'Hard'].map(d => (
+                <button
+                  key={d}
+                  onClick={() => setDifficulty(d)}
+                  className={`flex-1 py-2.5 rounded-md font-medium text-sm transition-all duration-200 ${
+                    difficulty === d
+                      ? 'bg-indigo-600 text-white shadow-sm'
+                      : 'text-gray-500 hover:text-gray-300'
+                  }`}
+                >
+                  {d}
+                </button>
+              ))}
             </div>
           </div>
+
+          {/* Generate Button */}
           <button
             onClick={handleGenerate}
             disabled={loading || !topic.trim()}
-            className="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-lg rounded-xl transition-all"
+            className="w-full py-[13px] bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold text-base rounded-lg transition-all duration-200"
+            style={{ height: '52px' }}
           >
-            {loading ? 'Generating Lesson...' : 'Generate Lesson'}
+            {loading ? (
+              <span className="flex items-center justify-center gap-2">
+                <svg className="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" strokeDasharray="31.4" strokeDashoffset="10"/></svg>
+                Generating Lesson...
+              </span>
+            ) : 'Generate Lesson'}
           </button>
         </div>
 
+        {/* Loading skeleton */}
         {loading && (
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-8 animate-pulse">
-            <div className="h-4 bg-white/10 rounded mb-4 w-1/3" />
-            <div className="h-4 bg-white/10 rounded mb-3 w-full" />
-            <div className="h-4 bg-white/10 rounded mb-3 w-4/5" />
-            <div className="h-4 bg-white/10 rounded w-2/3" />
+          <div className="bg-[#16213E] border border-[#2A2A4A] rounded-xl p-6 animate-pulse">
+            <div className="h-3.5 bg-[#2A2A4A] rounded mb-4 w-1/3" />
+            <div className="h-3.5 bg-[#2A2A4A] rounded mb-3 w-full" />
+            <div className="h-3.5 bg-[#2A2A4A] rounded mb-3 w-4/5" />
+            <div className="h-3.5 bg-[#2A2A4A] rounded w-2/3" />
           </div>
         )}
 
+        {/* Results */}
         {result && !result.error && (
-          <div className="space-y-6">
+          <div className="space-y-5">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold">Generated Lesson</h2>
+              <h2 className="text-lg font-semibold">Generated Lesson</h2>
               <button
                 onClick={handleCopy}
-                className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold transition-all"
+                className="px-4 py-2 bg-[#16213E] border border-[#2A2A4A] hover:border-gray-600 rounded-lg text-sm font-medium transition-all duration-200"
               >
                 {copied ? 'Copied!' : 'Copy JSON'}
               </button>
             </div>
             {result.overview && (
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                <h3 className="font-bold text-indigo-400 mb-3">Overview</h3>
-                <p className="text-slate-300 leading-relaxed">{result.overview}</p>
+              <div className="bg-[#16213E] border border-[#2A2A4A] rounded-xl p-5">
+                <h3 className="font-semibold text-indigo-400 text-sm mb-2">Overview</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{result.overview}</p>
               </div>
             )}
             {result.keyPoints && (
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                <h3 className="font-bold text-green-400 mb-3">Key Points</h3>
+              <div className="bg-[#16213E] border border-[#2A2A4A] rounded-xl p-5">
+                <h3 className="font-semibold text-emerald-400 text-sm mb-3">Key Points</h3>
                 <ul className="space-y-2">
                   {result.keyPoints.map((kp: string, i: number) => (
-                    <li key={i} className="flex items-start gap-2 text-slate-300">
-                      <span className="text-green-400 mt-1">•</span>{kp}
+                    <li key={i} className="flex items-start gap-2.5 text-gray-400 text-sm">
+                      <span className="text-emerald-400 mt-0.5 flex-shrink-0">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      </span>
+                      {kp}
                     </li>
                   ))}
                 </ul>
               </div>
             )}
             {result.quiz && (
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                <h3 className="font-bold text-yellow-400 mb-4">Quiz Questions</h3>
+              <div className="bg-[#16213E] border border-[#2A2A4A] rounded-xl p-5">
+                <h3 className="font-semibold text-yellow-400 text-sm mb-4">Quiz Questions</h3>
                 <div className="space-y-4">
                   {result.quiz.map((q: any, i: number) => (
-                    <div key={i} className="bg-white/5 rounded-xl p-4">
-                      <p className="font-semibold text-white mb-2">Q{i+1}. {q.question}</p>
+                    <div key={i} className="bg-[#0F0F1A] rounded-lg p-4">
+                      <p className="font-medium text-white text-sm mb-3">Q{i+1}. {q.question}</p>
                       <div className="grid grid-cols-2 gap-2">
                         {q.options.map((opt: string, j: number) => (
-                          <div key={j} className={`px-3 py-2 rounded-lg text-sm ${j === q.correct ? 'bg-green-500/20 text-green-300 border border-green-500/30' : 'bg-white/5 text-slate-400'}`}>
+                          <div key={j} className={`px-3 py-2 rounded-lg text-sm ${j === q.correct ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-[#16213E] text-gray-500 border border-[#2A2A4A]'}`}>
                             {String.fromCharCode(65+j)}. {opt}
                           </div>
                         ))}
@@ -167,13 +191,13 @@ export default function AiGeneratePage() {
               </div>
             )}
             {result.exercise && (
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                <h3 className="font-bold text-purple-400 mb-3">Exercise: {result.exercise.title}</h3>
-                <p className="text-slate-300 mb-3">{result.exercise.instructions}</p>
+              <div className="bg-[#16213E] border border-[#2A2A4A] rounded-xl p-5">
+                <h3 className="font-semibold text-purple-400 text-sm mb-2">Exercise: {result.exercise.title}</h3>
+                <p className="text-gray-400 text-sm mb-3">{result.exercise.instructions}</p>
                 {result.exercise.hints && (
-                  <ul className="space-y-1">
+                  <ul className="space-y-1.5">
                     {result.exercise.hints.map((h: string, i: number) => (
-                      <li key={i} className="text-yellow-300/70 text-sm">Hint {i+1}: {h}</li>
+                      <li key={i} className="text-yellow-400/60 text-xs">Hint {i+1}: {h}</li>
                     ))}
                   </ul>
                 )}
@@ -183,11 +207,10 @@ export default function AiGeneratePage() {
         )}
 
         {result && result.error && (
-          <div className="bg-red-500/10 border border-red-500/30 rounded-2xl p-6 text-red-300">
+          <div className="bg-red-500/5 border border-red-500/20 rounded-xl p-5 text-red-400 text-sm">
             {result.error}
           </div>
         )}
-
       </div>
     </main>
   )
