@@ -274,6 +274,511 @@ export const courses: Course[] = [
     ]
   },
   {
+    id: 'c1-english',
+    title: 'Class 1 - English',
+    description: 'Learn the alphabet, phonics, simple words and enjoy short stories to build early reading skills.',
+    grade: '1-2',
+    subject: 'English',
+    icon: '📖',
+    color: 'bg-pink-500',
+    totalLessons: 3,
+    totalDuration: '1.5 hours',
+    xpReward: 150,
+    modules: [
+      {
+        id: 'c1en-m1',
+        title: 'Alphabet, Phonics & Reading',
+        lessons: [
+          {
+            id: 'c1en-1-1',
+            title: 'ABC - Learning the Alphabet',
+            type: 'video',
+            duration: '10 min',
+            xp: 30,
+            content: {
+              overview: 'Learn all 26 letters of the English alphabet with fun animations. Trace letters and hear their sounds!',
+              keyPoints: ['Recognize all 26 letters', 'Write uppercase and lowercase', 'Letter sounds (phonics basics)'],
+              videoTitle: 'The Alphabet Song & Beyond',
+              videoDuration: '10:00',
+              quiz: [
+                { id: 1, question: 'Which letter comes after D?', options: ['C', 'E', 'F', 'B'], correct: 1, explanation: 'The order is A, B, C, D, E. So E comes right after D!' },
+                { id: 2, question: 'How many letters are in the English alphabet?', options: ['24', '25', '26', '28'], correct: 2, explanation: 'There are 26 letters in the English alphabet, from A to Z!' }
+              ]
+            }
+          },
+          {
+            id: 'c1en-1-2',
+            title: 'Phonics - Letter Sounds',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 35,
+            content: {
+              overview: 'Learn how each letter sounds. Practice blending sounds to read simple three-letter words like cat, bat, and sun.',
+              keyPoints: ['Sound of each letter', 'Blend sounds together', 'Read CVC words (cat, dog, sun)'],
+              exercise: {
+                title: 'Sound It Out!',
+                instructions: 'Listen to the sound and pick the correct letter. Then blend letter sounds to read the word shown: C-A-T = CAT.',
+                hints: ['Say each letter sound slowly', 'Then say them faster together', 'The word will appear!']
+              },
+              quiz: [
+                { id: 1, question: 'What word do these sounds make? D-O-G', options: ['Dig', 'Dog', 'Dug', 'Dot'], correct: 1, explanation: 'Blend the sounds: D-O-G makes the word DOG! 🐕' },
+                { id: 2, question: 'Which word starts with the sound "sss"?', options: ['Cat', 'Ball', 'Sun', 'Hen'], correct: 2, explanation: 'Sun starts with the "sss" sound. S says "sss"!' }
+              ]
+            }
+          },
+          {
+            id: 'c1en-1-3',
+            title: 'Simple Words & Short Stories',
+            type: 'reading',
+            duration: '10 min',
+            xp: 40,
+            content: {
+              overview: 'Read simple words and enjoy a short story with pictures. Answer questions about the story to build comprehension.',
+              keyPoints: ['Read simple words', 'Enjoy a short story', 'Answer basic questions about the story'],
+              quiz: [
+                { id: 1, question: 'Which is a naming word (noun)?', options: ['Run', 'Big', 'Ball', 'Fast'], correct: 2, explanation: 'Ball is a naming word (noun). It names a thing!' },
+                { id: 2, question: 'The cat sat on the ___. Which word fits?', options: ['Run', 'Mat', 'Fly', 'Sing'], correct: 1, explanation: 'The cat sat on the mat. Cat and mat are rhyming words!' }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c1-hindi',
+    title: 'Class 1 - Hindi',
+    description: 'Learn Varnamala (Hindi alphabet), matras, and simple sentences through fun activities and stories.',
+    grade: '1-2',
+    subject: 'Hindi',
+    icon: '🕉',
+    color: 'bg-orange-500',
+    totalLessons: 3,
+    totalDuration: '1.5 hours',
+    xpReward: 150,
+    modules: [
+      {
+        id: 'c1hi-m1',
+        title: 'Varnamala, Matras & Sentences',
+        lessons: [
+          {
+            id: 'c1hi-1-1',
+            title: 'Varnamala - Hindi Alphabet (अ से ज्ञ)',
+            type: 'video',
+            duration: '10 min',
+            xp: 30,
+            content: {
+              overview: 'Learn the Hindi Varnamala - swar (vowels) and vyanjan (consonants). Trace and write each letter with fun animations!',
+              keyPoints: ['Recognize swar (अ आ इ ई...)', 'Recognize vyanjan (क ख ग घ...)', 'Write Hindi letters correctly'],
+              videoTitle: 'Varnamala Geet - Hindi Alphabet',
+              videoDuration: '10:00',
+              quiz: [
+                { id: 1, question: 'How many swar (vowels) are there in Hindi?', options: ['10', '11', '12', '13'], correct: 1, explanation: 'There are 11 swar (vowels) in Hindi: अ, आ, इ, ई, उ, ऊ, ऋ, ए, ऐ, ओ, औ.' },
+                { id: 2, question: 'Which letter comes after क?', options: ['ग', 'ख', 'घ', 'च'], correct: 1, explanation: 'The order is क, ख, ग, घ, ङ. So ख comes right after क!' }
+              ]
+            }
+          },
+          {
+            id: 'c1hi-1-2',
+            title: 'Matras - Adding Vowel Signs',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 35,
+            content: {
+              overview: 'Learn how matras (vowel signs) change the sound of consonants. Practice: क + ा = का, क + ि = कि.',
+              keyPoints: ['Understand matras (ा ि ी ु ू)', 'Add matras to consonants', 'Read words with matras'],
+              exercise: {
+                title: 'Matra Match Game',
+                instructions: 'Drag the correct matra onto the consonant to make the word shown in the picture. Example: क + ा + म = काम.',
+                hints: ['ा (aa) matra goes to the right', 'ि (i) matra goes to the left', 'ी (ee) matra goes to the right']
+              },
+              quiz: [
+                { id: 1, question: 'क + ि = ?', options: ['का', 'कि', 'की', 'कु'], correct: 1, explanation: 'क + ि (chhoti i matra) = कि. The ि matra is written before the consonant!' },
+                { id: 2, question: 'Which word has the ा (aa) matra? ', options: ['कि', 'कु', 'काम', 'किस'], correct: 2, explanation: 'काम has the ा (aa) matra. क + ा + म = काम (work)!' }
+              ]
+            }
+          },
+          {
+            id: 'c1hi-1-3',
+            title: 'Simple Sentences in Hindi',
+            type: 'reading',
+            duration: '10 min',
+            xp: 40,
+            content: {
+              overview: 'Read and write simple Hindi sentences. Learn common words and form short sentences about daily activities.',
+              keyPoints: ['Read simple Hindi words', 'Form short sentences', 'Common everyday words in Hindi'],
+              quiz: [
+                { id: 1, question: '"यह मेरा घर है" - इस वाक्य में संज्ञा (noun) कौन सा शब्द है?', options: ['यह', 'मेरा', 'घर', 'है'], correct: 2, explanation: 'घर (house) एक संज्ञा (noun) है। यह किसी जगह का नाम है!' },
+                { id: 2, question: 'रा + म = ?', options: ['राम', 'रम', 'रिम', 'रूम'], correct: 0, explanation: 'रा + म = राम। The ा matra on र makes it रा, and adding म gives राम!' }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c2-math',
+    title: 'Class 2 - Mathematics',
+    description: 'Explore numbers to 100, master addition & subtraction, and get an introduction to multiplication!',
+    grade: '1-2',
+    subject: 'Mathematics',
+    icon: '🔢',
+    color: 'bg-blue-500',
+    totalLessons: 3,
+    totalDuration: '1.5 hours',
+    xpReward: 150,
+    modules: [
+      {
+        id: 'c2m-m1',
+        title: 'Numbers, Operations & Multiplication Intro',
+        lessons: [
+          {
+            id: 'c2m-1-1',
+            title: 'Numbers to 100 - Place Value',
+            type: 'video',
+            duration: '10 min',
+            xp: 30,
+            content: {
+              overview: 'Understand numbers up to 100 using place value. Learn tens and ones with bundling sticks and bead strings!',
+              keyPoints: ['Read and write numbers to 100', 'Understand tens and ones place', 'Compare numbers using > < ='],
+              videoTitle: 'Numbers to 100 - Tens & Ones',
+              videoDuration: '10:00',
+              quiz: [
+                { id: 1, question: 'In the number 47, what is the value of 4?', options: ['4', '40', '7', '47'], correct: 1, explanation: '4 is in the tens place, so its value is 40. 47 = 40 + 7!' },
+                { id: 2, question: 'Which is greater: 56 or 65?', options: ['56', '65', 'Both same', 'Cannot tell'], correct: 1, explanation: '65 is greater. Compare tens first: 6 tens > 5 tens, so 65 > 56!' }
+              ]
+            }
+          },
+          {
+            id: 'c2m-1-2',
+            title: 'Addition & Subtraction with Regrouping',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 40,
+            content: {
+              overview: 'Add and subtract two-digit numbers with carrying and borrowing. Use virtual base-10 blocks for hands-on practice!',
+              keyPoints: ['Add two-digit numbers with carry', 'Subtract with borrowing', 'Word problems with addition and subtraction'],
+              exercise: {
+                title: 'Add & Subtract Challenge',
+                instructions: 'Use the base-10 blocks to solve each problem. Group 10 ones into a ten when adding. Break a ten into ones when subtracting.',
+                hints: ['Start adding from the ones place', 'If ones add up to 10 or more, carry to tens', 'When subtracting, borrow from tens if needed']
+              },
+              quiz: [
+                { id: 1, question: '28 + 35 = ?', options: ['53', '63', '73', '55'], correct: 1, explanation: '8 + 5 = 13, write 3 carry 1. 2 + 3 + 1 = 6. Answer: 63!' },
+                { id: 2, question: '52 - 17 = ?', options: ['45', '35', '25', '43'], correct: 1, explanation: 'Borrow from tens: 12 - 7 = 5 (ones), 4 - 1 = 3 (tens). Answer: 35!' }
+              ]
+            }
+          },
+          {
+            id: 'c2m-1-3',
+            title: 'Introduction to Multiplication',
+            type: 'quiz',
+            duration: '10 min',
+            xp: 40,
+            content: {
+              overview: 'Discover multiplication as repeated addition! 3 groups of 4 means 4 + 4 + 4 = 12, or 3 × 4 = 12.',
+              keyPoints: ['Multiplication as repeated addition', 'Use × sign', 'Times tables for 2 and 3'],
+              quiz: [
+                { id: 1, question: '3 groups of 2 apples = ? apples', options: ['5', '6', '8', '9'], correct: 1, explanation: '3 groups of 2 = 2 + 2 + 2 = 6 apples. Or 3 × 2 = 6!' },
+                { id: 2, question: '4 × 3 = ?', options: ['7', '10', '12', '15'], correct: 2, explanation: '4 × 3 means 3 + 3 + 3 + 3 = 12. Four groups of three!' }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c2-english',
+    title: 'Class 2 - English',
+    description: 'Build reading comprehension, learn grammar basics, and start writing short paragraphs with confidence.',
+    grade: '1-2',
+    subject: 'English',
+    icon: '📚',
+    color: 'bg-pink-600',
+    totalLessons: 3,
+    totalDuration: '1.5 hours',
+    xpReward: 150,
+    modules: [
+      {
+        id: 'c2en-m1',
+        title: 'Reading, Grammar & Writing',
+        lessons: [
+          {
+            id: 'c2en-1-1',
+            title: 'Reading Comprehension - Story Time',
+            type: 'reading',
+            duration: '10 min',
+            xp: 30,
+            content: {
+              overview: 'Read a fun short story and answer questions about characters, setting, and events. Build comprehension skills!',
+              keyPoints: ['Read with understanding', 'Identify characters and setting', 'Answer who, what, where questions'],
+              quiz: [
+                { id: 1, question: 'What does "setting" of a story mean?', options: ['The main character', 'Where and when the story happens', 'The ending', 'The title'], correct: 1, explanation: 'The setting tells us WHERE and WHEN the story takes place!' },
+                { id: 2, question: 'In the sentence "The bird flew over the tree", what is the action word?', options: ['Bird', 'Flew', 'Over', 'Tree'], correct: 1, explanation: 'Flew is the action word (verb). It tells what the bird did!' }
+              ]
+            }
+          },
+          {
+            id: 'c2en-1-2',
+            title: 'Grammar Basics - Nouns & Verbs',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 35,
+            content: {
+              overview: 'Learn about naming words (nouns) and action words (verbs). Sort words into the right category in fun games!',
+              keyPoints: ['Nouns name people, places, things', 'Verbs show action', 'Use nouns and verbs in sentences'],
+              exercise: {
+                title: 'Sort the Words!',
+                instructions: 'Drag each word into the NOUN basket or the VERB basket. Is it a naming word or an action word?',
+                hints: ['Can you see or touch it? Probably a noun', 'Can you do it? Probably a verb', 'Dog is a noun, run is a verb']
+              },
+              quiz: [
+                { id: 1, question: 'Which word is a verb?', options: ['Table', 'Jump', 'Book', 'School'], correct: 1, explanation: 'Jump is a verb - it is an action you can do!' },
+                { id: 2, question: 'Pick the correct sentence:', options: ['He go to school.', 'He goes to school.', 'He going school.', 'He school goes.'], correct: 1, explanation: '"He goes to school" is correct. With he/she/it, we add -s or -es to the verb!' }
+              ]
+            }
+          },
+          {
+            id: 'c2en-1-3',
+            title: 'Writing - My First Paragraph',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 40,
+            content: {
+              overview: 'Learn to write short paragraphs about yourself, your family, and your favourite things. Use capital letters and full stops!',
+              keyPoints: ['Start sentences with capital letters', 'End with full stop or question mark', 'Write 3-4 sentences on a topic'],
+              exercise: {
+                title: 'Write About Yourself',
+                instructions: 'Complete the paragraph by filling in the blanks: My name is ___. I am ___ years old. I like ___. My favourite colour is ___.',
+                hints: ['Start each sentence with a capital letter', 'End each sentence with a full stop', 'Write about things you really like']
+              },
+              quiz: [
+                { id: 1, question: 'Which sentence is written correctly?', options: ['my name is ria.', 'My name is Ria.', 'my Name is ria', 'My name is ria'], correct: 1, explanation: 'Start with a capital letter, capitalize names (Ria), and end with a full stop!' },
+                { id: 2, question: 'What goes at the end of a question?', options: ['Full stop (.)', 'Comma (,)', 'Question mark (?)', 'Exclamation mark (!)'], correct: 2, explanation: 'Questions always end with a question mark (?). Example: What is your name?' }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c2-hindi',
+    title: 'Class 2 - Hindi',
+    description: 'Improve Hindi reading, writing, grammar, and enjoy poetry with interactive exercises and stories.',
+    grade: '1-2',
+    subject: 'Hindi',
+    icon: '📝',
+    color: 'bg-orange-600',
+    totalLessons: 3,
+    totalDuration: '1.5 hours',
+    xpReward: 150,
+    modules: [
+      {
+        id: 'c2hi-m1',
+        title: 'Reading, Writing, Grammar & Poetry',
+        lessons: [
+          {
+            id: 'c2hi-1-1',
+            title: 'Hindi Reading - Short Stories',
+            type: 'reading',
+            duration: '10 min',
+            xp: 30,
+            content: {
+              overview: 'Read simple Hindi stories with pictures. Practice reading fluently and answer comprehension questions.',
+              keyPoints: ['Read Hindi sentences fluently', 'Understand story meaning', 'Answer questions in Hindi'],
+              quiz: [
+                { id: 1, question: '"चिड़िया पेड़ पर बैठी है" - चिड़िया कहाँ बैठी है?', options: ['घर पर', 'पेड़ पर', 'नदी में', 'छत पर'], correct: 1, explanation: 'वाक्य में लिखा है "पेड़ पर" - चिड़िया पेड़ पर बैठी है!' },
+                { id: 2, question: '"बच्चे खेल रहे हैं" - इस वाक्य में क्रिया (verb) कौन सा शब्द है?', options: ['बच्चे', 'खेल रहे', 'हैं', 'रहे'], correct: 1, explanation: '"खेल रहे" क्रिया है। यह बताता है कि बच्चे क्या कर रहे हैं!' }
+              ]
+            }
+          },
+          {
+            id: 'c2hi-1-2',
+            title: 'Hindi Grammar - Gender & Number',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 35,
+            content: {
+              overview: 'Learn about ling (gender) and vachan (number) in Hindi. Practice changing words from singular to plural.',
+              keyPoints: ['Pulling (masculine) and Strilinga (feminine)', 'Ekvachan (singular) and Bahuvachan (plural)', 'Change words correctly'],
+              exercise: {
+                title: 'Gender & Number Game',
+                instructions: 'Sort each word into masculine or feminine. Then change each word from singular to plural. Example: लड़का → लड़के.',
+                hints: ['लड़का is masculine, लड़की is feminine', 'Add ए or ों to make plural in many cases', 'Some words change completely in plural']
+              },
+              quiz: [
+                { id: 1, question: '"किताब" शब्द का बहुवचन (plural) क्या है?', options: ['किताब', 'किताबें', 'किताबों', 'किताबी'], correct: 1, explanation: 'किताब का बहुवचन "किताबें" है। ब के बाद "ें" जोड़ दिया!' },
+                { id: 2, question: '"लड़का" शब्द का लिंग (gender) क्या है?', options: ['स्त्रीलिंग', 'पुल्लिंग', 'नपुंसकलिंग', 'कोई नहीं'], correct: 1, explanation: '"लड़का" पुल्लिंग (masculine) है। इसका स्त्रीलिंग "लड़की" है!' }
+              ]
+            }
+          },
+          {
+            id: 'c2hi-1-3',
+            title: 'Hindi Poetry - Kavita',
+            type: 'reading',
+            duration: '10 min',
+            xp: 40,
+            content: {
+              overview: 'Enjoy simple Hindi poems (kavita) about nature, animals, and seasons. Recite with rhythm and learn new words!',
+              keyPoints: ['Read Hindi poems with rhythm', 'Find rhyming words in Hindi', 'Learn new Hindi vocabulary from poems'],
+              quiz: [
+                { id: 1, question: '"तितली उड़ी, बागों में, फूलों की महक राहों में" - कविता में कौन उड़ी?', options: ['चिड़िया', 'तितली', 'मधुमक्खी', 'मक्खी'], correct: 1, explanation: 'कविता में "तितली" उड़ी। तितली means butterfly!' },
+                { id: 2, question: 'कविता में तुकबंदी (rhyming) वाले शब्द कौन से हैं?', options: ['बागों-राहों', 'उड़ी-फूलों', 'तितली-महक', 'में-की'], correct: 0, explanation: '"बागों" और "राहों" तुकबंदी वाले शब्द हैं - दोनों "ों" पर खत्म होते हैं!' }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c2-evs',
+    title: 'Class 2 - EVS (Our Environment)',
+    description: 'Discover plants, animals, water, shelter, and family relationships through observation and activities.',
+    grade: '1-2',
+    subject: 'EVS',
+    icon: '🌱',
+    color: 'bg-green-600',
+    totalLessons: 3,
+    totalDuration: '1.5 hours',
+    xpReward: 150,
+    modules: [
+      {
+        id: 'c2ev-m1',
+        title: 'Plants, Animals, Water & Shelter',
+        lessons: [
+          {
+            id: 'c2ev-1-1',
+            title: 'Plants Around Us',
+            type: 'video',
+            duration: '10 min',
+            xp: 30,
+            content: {
+              overview: 'Learn about different types of plants - trees, shrubs, herbs, and climbers. Explore parts of a plant and what they need to grow.',
+              keyPoints: ['Types of plants', 'Parts of a plant (root, stem, leaf, flower)', 'Plants need water, sunlight, and air'],
+              videoTitle: 'The Amazing World of Plants',
+              videoDuration: '10:00',
+              quiz: [
+                { id: 1, question: 'Which part of the plant takes in water from the soil?', options: ['Leaf', 'Stem', 'Root', 'Flower'], correct: 2, explanation: 'Roots take in water and minerals from the soil. They also hold the plant in the ground!' },
+                { id: 2, question: 'What do plants need to grow?', options: ['Only water', 'Water, sunlight, and air', 'Only sunlight', 'Only soil'], correct: 1, explanation: 'Plants need water, sunlight, and air to grow. They also need soil for nutrients!' }
+              ]
+            }
+          },
+          {
+            id: 'c2ev-1-2',
+            title: 'Animals & Their Homes',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 35,
+            content: {
+              overview: 'Discover where different animals live - nests, burrows, water, and forests. Match animals to their shelters!',
+              keyPoints: ['Animals live in different homes', 'Match animals to shelters', 'Animals need food, water, and shelter'],
+              exercise: {
+                title: 'Animal Home Match',
+                instructions: 'Drag each animal to its correct home. Where does a bird live? Where does a fish live? Where does a rabbit live?',
+                hints: ['Birds live in nests', 'Fish live in water', 'Rabbits live in burrows']
+              },
+              quiz: [
+                { id: 1, question: 'Where does a honeybee live?', options: ['Nest', 'Burrow', 'Hive', 'Den'], correct: 2, explanation: 'Honeybees live in hives where they make honey and store food!' },
+                { id: 2, question: 'Which animal lives in water?', options: ['Cat', 'Frog', 'Cow', 'Parrot'], correct: 1, explanation: 'Frogs live near water - in ponds and lakes. They can live on land and in water!' }
+              ]
+            }
+          },
+          {
+            id: 'c2ev-1-3',
+            title: 'Water & Family',
+            type: 'quiz',
+            duration: '10 min',
+            xp: 40,
+            content: {
+              overview: 'Learn about uses of water in daily life and the importance of saving water. Understand family relationships and responsibilities.',
+              keyPoints: ['Uses of water', 'Save water - dont waste', 'Family members and their roles'],
+              quiz: [
+                { id: 1, question: 'Which of these is NOT a use of water?', options: ['Drinking', 'Cooking', 'Making fire', 'Bathing'], correct: 2, explanation: 'We do not use water to make fire! Water is used for drinking, cooking, bathing, and cleaning.' },
+                { id: 2, question: 'How can we save water at home?', options: ['Leave taps open', 'Take very long showers', 'Turn off tap while brushing', 'Waste water while playing'], correct: 2, explanation: 'Turning off the tap while brushing teeth saves a lot of water every day!' }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'c2-science',
+    title: 'Class 2 - Science',
+    description: 'Explore living things, weather patterns, and simple machines through hands-on activities and experiments.',
+    grade: '1-2',
+    subject: 'Science',
+    icon: '🔬',
+    color: 'bg-teal-500',
+    totalLessons: 3,
+    totalDuration: '1.5 hours',
+    xpReward: 150,
+    modules: [
+      {
+        id: 'c2sc-m1',
+        title: 'Living Things, Weather & Simple Machines',
+        lessons: [
+          {
+            id: 'c2sc-1-1',
+            title: 'Living and Non-Living Things',
+            type: 'video',
+            duration: '10 min',
+            xp: 30,
+            content: {
+              overview: 'Learn to tell apart living and non-living things. Living things breathe, grow, eat, and move!',
+              keyPoints: ['Living things grow, breathe, eat, move', 'Non-living things do not grow or breathe', 'Sort objects into living and non-living'],
+              videoTitle: 'Living or Non-Living?',
+              videoDuration: '10:00',
+              quiz: [
+                { id: 1, question: 'Which of these is a living thing?', options: ['Rock', 'Chair', 'Plant', 'Book'], correct: 2, explanation: 'A plant is a living thing! It grows, needs water and sunlight, and makes its own food.' },
+                { id: 2, question: 'What do all living things need?', options: ['Television', 'Food and water', 'Toys', 'Books'], correct: 1, explanation: 'All living things need food and water to survive and grow!' }
+              ]
+            }
+          },
+          {
+            id: 'c2sc-1-2',
+            title: 'Weather & Seasons',
+            type: 'exercise',
+            duration: '10 min',
+            xp: 35,
+            content: {
+              overview: 'Observe weather patterns - sunny, rainy, cloudy, windy. Learn about seasons and how they affect our daily lives.',
+              keyPoints: ['Types of weather', 'Four seasons and their features', 'Dress for the weather'],
+              exercise: {
+                title: 'Weather Dress-Up Game',
+                instructions: 'Look at the weather shown. Choose the right clothes for that weather! Umbrella for rain, jacket for cold, hat for sunny.',
+                hints: ['Rainy day = umbrella and raincoat', 'Sunny day = hat and light clothes', 'Cold day = jacket and warm clothes']
+              },
+              quiz: [
+                { id: 1, question: 'What should you carry on a rainy day?', options: ['Sunglasses', 'Umbrella', 'Fan', 'Ice cream'], correct: 1, explanation: 'An umbrella keeps you dry when it rains! Always carry one during monsoon season.' },
+                { id: 2, question: 'In which season do we see lots of flowers blooming?', options: ['Winter', 'Summer', 'Spring', 'Autumn'], correct: 2, explanation: 'Spring is when flowers bloom, trees get new leaves, and birds sing! It comes after winter.' }
+              ]
+            }
+          },
+          {
+            id: 'c2sc-1-3',
+            title: 'Simple Machines Around Us',
+            type: 'lab',
+            duration: '10 min',
+            xp: 40,
+            content: {
+              overview: 'Discover simple machines we use every day - scissors, see-saw, ramp, wheel. They make work easier!',
+              keyPoints: ['Simple machines make work easier', 'Examples: lever, wheel, ramp', 'Find simple machines at home and school'],
+              quiz: [
+                { id: 1, question: 'A see-saw is an example of a...', options: ['Wheel', 'Lever', 'Ramp', 'Pulley'], correct: 1, explanation: 'A see-saw is a lever! It has a fixed point (fulcrum) in the middle and moves up and down.' },
+                { id: 2, question: 'Which simple machine helps us move heavy things up?', options: ['Scissors', 'Ramp (inclined plane)', 'Needle', 'Spoon'], correct: 1, explanation: 'A ramp (inclined plane) makes it easier to move heavy things up. Thats why buildings have ramps!' }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
     id: 'c3-english',
     title: 'Class 3 - English',
     description: 'Build reading, writing & grammar skills with fun stories, poems, and interactive exercises.',
