@@ -1,109 +1,48 @@
 'use client'
-import { useState, useRef, useEffect } from 'react'
-
-interface Message {
-  role: 'user' | 'bot'
-  text: string
-}
-
-export default function AiTutor({ context }: { context?: string }) {
+import { useState } from 'react'
+export default function AiTutor({ topic }: { topic: string }) {
   const [open, setOpen] = useState(false)
-  const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', text: '\ud83c\udf1f Hi! I\'m VidyaBot, your AI study buddy! Ask me anything about your lesson and I\'ll help you understand it better. \ud83d\ude80' }
-  ])
+  const [messages, setMessages] = useState<{role:string;text:string}[]>([{role:'bot',text:`Hi! I'm VidyaBot 🤖 Ask me anything about "${topic}"!`}])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
-  const chatRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (chatRef.current) chatRef.current.scrollTop = chatRef.current.scrollHeight
-  }, [messages])
-
-  const sendMessage = async () => {
-    if (!input.trim() || loading) return
+  const send = async () => {
+    if (!input.trim()) return
     const userMsg = input.trim()
+    setMessages(m => [...m, {role:'user',text:userMsg}])
     setInput('')
-    setMessages(prev => [...prev, { role: 'user', text: userMsg }])
     setLoading(true)
-
     try {
-      const res = await fetch('/api/ai-tutor', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: userMsg, context }),
-      })
-      const data = await res.json()
-      setMessages(prev => [...prev, { role: 'bot', text: data.reply }])
-    } catch {
-      setMessages(prev => [...prev, { role: 'bot', text: 'Oops! Something went wrong. Please try again. \ud83d\ude4f' }])
-    }
+      const r = await fetch('/api/ai-tutor', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:userMsg,topic})})
+      const d = await r.json()
+      setMessages(m => [...m, {role:'bot',text:d.reply}])
+    } catch { setMessages(m => [...m, {role:'bot',text:'Oops! Try again 🙏'}]) }
     setLoading(false)
   }
-
   return (
-    <>
-      {/* Floating Button */}
-      <button
-        onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white shadow-xl shadow-indigo-500/30 flex items-center justify-center text-2xl transition-all hover:scale-110"
-        title="Ask VidyaBot"
-      >
-        {open ? '\u2715' : '\ud83e\udd16'}
-      </button>
-
-      {/* Chat Panel */}
+    <div className="fixed bottom-6 right-6 z-50">
       {open && (
-        <div className="fixed bottom-24 right-6 z-50 w-80 md:w-96 bg-slate-800 border border-white/10 rounded-2xl shadow-2xl shadow-black/50 flex flex-col overflow-hidden" style={{ height: '480px' }}>
-          {/* Header */}
-          <div className="px-4 py-3 bg-indigo-600 flex items-center gap-3">
-            <span className="text-xl">\ud83e\udd16</span>
-            <div>
-              <h3 className="text-white font-bold text-sm">VidyaBot - AI Tutor</h3>
-              <p className="text-indigo-200 text-xs">Ask me anything about your lesson!</p>
-            </div>
+        <div className="mb-3 w-80 bg-slate-800 border border-white/10 rounded-2xl shadow-2xl flex flex-col" style={{height:'400px'}}>
+          <div className="px-4 py-3 border-b border-white/10 flex items-center justify-between">
+            <span className="text-white font-semibold text-sm">🤖 VidyaBot AI Tutor</span>
+            <button onClick={() => setOpen(false)} className="text-slate-400 hover:text-white text-xs">✕</button>
           </div>
-
-          {/* Messages */}
-          <div ref={chatRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
-            {messages.map((msg, i) => (
-              <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[80%] px-3 py-2 rounded-xl text-sm whitespace-pre-wrap ${
-                  msg.role === 'user'
-                    ? 'bg-indigo-600 text-white rounded-br-sm'
-                    : 'bg-white/10 text-slate-200 rounded-bl-sm'
-                }`}>
-                  {msg.text}
-                </div>
+          <div className="flex-1 overflow-y-auto p-3 space-y-2">
+            {messages.map((m,i) => (
+              <div key={i} className={`flex ${m.role==='user'?'justify-end':''}`}>
+                <div className={`max-w-xs px-3 py-2 rounded-xl text-sm ${m.role==='user'?'bg-indigo-600 text-white':'bg-white/10 text-slate-200'}`}>{m.text}</div>
               </div>
             ))}
-            {loading && (
-              <div className="flex justify-start">
-                <div className="bg-white/10 text-slate-400 px-3 py-2 rounded-xl text-sm rounded-bl-sm">
-                  \ud83e\udd14 Thinking...
-                </div>
-              </div>
-            )}
+            {loading && <div className="flex"><div className="bg-white/10 text-slate-300 px-3 py-2 rounded-xl text-sm">Thinking... 🤔</div></div>}
           </div>
-
-          {/* Input */}
-          <div className="px-3 py-3 border-t border-white/10 flex gap-2">
-            <input
-              value={input}
-              onChange={e => setInput(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && sendMessage()}
-              placeholder="Ask a question..."
-              className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:border-indigo-500"
-            />
-            <button
-              onClick={sendMessage}
-              disabled={loading || !input.trim()}
-              className="bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white px-3 py-2 rounded-xl text-sm font-semibold"
-            >
-              Send
-            </button>
+          <div className="p-3 border-t border-white/10 flex gap-2">
+            <input value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>e.key==='Enter'&&send()} placeholder="Ask a question..." className="flex-1 bg-white/10 text-white placeholder-slate-500 text-sm px-3 py-2 rounded-xl border border-white/10 focus:outline-none focus:border-indigo-500" />
+            <button onClick={send} className="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-2 rounded-xl text-sm font-semibold">Send</button>
           </div>
         </div>
       )}
-    </>
+      <button onClick={() => setOpen(!open)} className="w-14 h-14 bg-indigo-600 hover:bg-indigo-500 rounded-full shadow-lg flex items-center justify-center text-2xl transition-all hover:scale-110">
+        {open ? '✕' : '🤖'}
+      </button>
+    </div>
   )
 }
