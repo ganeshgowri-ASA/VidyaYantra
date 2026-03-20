@@ -29,8 +29,8 @@ export default function HomePage() {
         </div>
       </section>
       {/* Stats */}
-      <section className="py-12 border-y border-white/10">
-        <div className="max-w-4xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <section className="py-16 border-y border-white/10">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[{num:'10',label:'Classes'},
             {num:'40+',label:'Subjects'},
             {num:'500+',label:'Lessons'},
@@ -43,12 +43,33 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      {/* Choose Your Class */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-white text-center mb-4">Choose Your Class</h2>
+          <p className="text-slate-400 text-center mb-12">Select your grade range to explore courses</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[{grade:'1-2',emoji:'🌟',label:'Classes 1-2',desc:'Foundation & fun learning'},
+              {grade:'3-5',emoji:'📚',label:'Classes 3-5',desc:'Building core skills'},
+              {grade:'6-8',emoji:'🔬',label:'Classes 6-8',desc:'Science & exploration'},
+              {grade:'9-10',emoji:'🎯',label:'Classes 9-10',desc:'Board exam prep'}
+            ].map(g => (
+              <Link key={g.grade} href="/courses"
+                className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:border-indigo-500/40 hover:bg-white/8 transition-all hover:-translate-y-1">
+                <div className="text-4xl mb-3">{g.emoji}</div>
+                <h3 className="text-white font-bold text-lg mb-1">{g.label}</h3>
+                <p className="text-slate-400 text-sm">{g.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
       {/* Features */}
       <section className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-white text-center mb-4">Everything you need to excel</h2>
           <p className="text-slate-400 text-center mb-12">Inspired by Coursera, Udemy & Khan Academy — built for Indian classrooms</p>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {features.map(f => (
               <div key={f.title} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-indigo-500/40 hover:bg-white/8 transition-all">
                 <div className="text-3xl mb-3">{f.icon}</div>
@@ -61,7 +82,7 @@ export default function HomePage() {
       </section>
       {/* CTA */}
       <section className="py-20 px-6 text-center">
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-white mb-4">Ready to start your learning journey? 🚀</h2>
           <p className="text-slate-400 mb-8">Join thousands of students learning with VidyaYantra</p>
           <Link href="/courses" className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold px-10 py-4 rounded-2xl text-lg transition-all inline-block hover:scale-105">Explore All Courses →</Link>

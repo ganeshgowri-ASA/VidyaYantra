@@ -29,7 +29,7 @@ export default async function CourseDetail({ params }: { params: Promise<{ id: s
   return (
     <main className="min-h-screen bg-slate-900">
       {/* Hero */}
-      <div className="px-6 md:px-12 py-10 border-b border-white/10">
+      <div className="px-6 py-10 max-w-4xl mx-auto border-b border-white/10">
         <Link href="/courses" className="text-slate-400 hover:text-white text-sm mb-6 inline-flex items-center gap-1">
           ← Back to Courses
         </Link>
@@ -62,7 +62,7 @@ export default async function CourseDetail({ params }: { params: Promise<{ id: s
       </div>
 
       {/* Modules & Lessons */}
-      <div className="px-6 md:px-12 py-8 max-w-4xl">
+      <div className="px-6 py-8 max-w-4xl mx-auto">
         <h2 className="text-xl font-bold text-white mb-6">Course Content</h2>
         <div className="space-y-6">
           {course.modules.map((mod, mi) => (
@@ -70,7 +70,7 @@ export default async function CourseDetail({ params }: { params: Promise<{ id: s
               {/* Module Header */}
               <div className="px-6 py-4 bg-white/5 border-b border-white/10">
                 <h3 className="text-white font-semibold">
-                  <span className="text-indigo-400 mr-2">Module {mi + 1}:</span>{mod.title}
+                  <span className="text-indigo-400 mr-2">Module {mi + 1}:</span> {mod.title}
                 </h3>
                 <p className="text-slate-400 text-sm mt-1">{mod.lessons.length} lessons</p>
               </div>
@@ -81,7 +81,7 @@ export default async function CourseDetail({ params }: { params: Promise<{ id: s
                   <Link
                     key={lesson.id}
                     href={`/courses/${course.id}/lessons/${lesson.id}`}
-                    className="flex items-center gap-4 px-6 py-4 hover:bg-white/5 transition-colors group"
+                    className="flex items-center gap-4 px-4 py-3 hover:bg-white/5 rounded-lg cursor-pointer transition-colors group"
                   >
                     <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-sm font-bold text-slate-400 group-hover:bg-indigo-500/20 group-hover:text-indigo-400 flex-shrink-0">
                       {li + 1}
