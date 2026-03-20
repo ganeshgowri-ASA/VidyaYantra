@@ -26,7 +26,7 @@ export default function CoursesPage() {
 
   return (
     <main className="min-h-screen bg-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         {/* Header */}
         <div className="pt-4 pb-8 border-b border-white/10 mb-8">
           <Link href="/" className="text-slate-400 hover:text-white text-sm mb-4 inline-block">← Back to Home</Link>

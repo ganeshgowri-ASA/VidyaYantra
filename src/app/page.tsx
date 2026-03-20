@@ -15,7 +15,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden pt-20 pb-24 text-center">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/40 via-purple-900/20 to-slate-900 pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto px-6 text-center">
             <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-2 text-indigo-400 text-sm font-medium mb-8">
               🌟 World-class e-learning for Indian school kids
             </div>
