@@ -1,125 +1,110 @@
-import { BookOpen, Clock, Users, Star, Play, Code2, CheckCircle2, ArrowLeft, Trophy, Brain, FileText, HelpCircle, Beaker } from 'lucide-react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getCourseById, getAllLessons } from '@/lib/courseData'
+import { getCourse } from '@/lib/courseData'
 
 const typeIcons: Record<string, string> = {
-  video: '▶',
+  video: '▶️',
   reading: '📖',
   quiz: '❓',
   exercise: '💻',
   lab: '🧪',
 }
 
+const typeColors: Record<string, string> = {
+  video: 'bg-blue-500/20 text-blue-400',
+  reading: 'bg-purple-500/20 text-purple-400',
+  quiz: 'bg-yellow-500/20 text-yellow-400',
+  exercise: 'bg-green-500/20 text-green-400',
+  lab: 'bg-red-500/20 text-red-400',
+}
+
 export default async function CourseDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
-  const course = getCourseById(Number(id))
+  const course = getCourse(id)
   if (!course) return notFound()
-  const allLessons = getAllLessons(course.id)
-  const totalXp = allLessons.reduce((sum, l) => sum + l.xp, 0)
+
+  const totalLessons = course.modules.reduce((sum, m) => sum + m.lessons.length, 0)
+  const totalXp = course.modules.reduce((sum, m) => sum + m.lessons.reduce((s, l) => s + l.xp, 0), 0)
 
   return (
-    <main className="min-h-screen">
-      <nav className="flex items-center justify-between px-6 md:px-12 py-4 border-b border-white/10 backdrop-blur-md sticky top-0 z-50">
-        <Link href="/" className="flex items-center gap-2">
-          <BookOpen className="w-8 h-8 text-indigo-400" />
-          <span className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">VidyaYantra</span>
+    <main className="min-h-screen bg-slate-900">
+      {/* Hero */}
+      <div className="px-6 md:px-12 py-10 border-b border-white/10">
+        <Link href="/courses" className="text-slate-400 hover:text-white text-sm mb-6 inline-flex items-center gap-1">
+          ← Back to Courses
         </Link>
-        <div className="hidden md:flex items-center gap-6 text-sm text-slate-400">
-          <Link href="/courses" className="hover:text-white transition">Courses</Link>
-          <Link href="/dashboard" className="hover:text-white transition">Dashboard</Link>
-        </div>
-      </nav>
-
-      <div className="px-4 md:px-12 py-8 max-w-7xl mx-auto">
-        <Link href="/courses" className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition mb-6">
-          <ArrowLeft className="w-4 h-4" /> Back to Courses
-        </Link>
-
-        <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <span className="text-xs px-2.5 py-1 rounded-full border bg-yellow-500/20 text-yellow-400 border-yellow-500/30">{course.level}</span>
-            <h1 className="text-3xl md:text-4xl font-bold text-white mt-3 mb-4">{course.title}</h1>
-            <p className="text-slate-400 text-lg mb-6">{course.about}</p>
-
-            <div className="flex flex-wrap items-center gap-6 text-sm text-slate-400 mb-8">
-              <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> {allLessons.length} lessons</span>
-              <span className="flex items-center gap-1.5"><BookOpen className="w-4 h-4" /> {course.modules.length} modules</span>
-              <span className="flex items-center gap-1.5"><Trophy className="w-4 h-4 text-indigo-400" /> {totalXp} XP</span>
+        <div className="flex items-start gap-5 mt-2">
+          <div className="text-6xl">{course.icon}</div>
+          <div className="flex-1">
+            <div className="flex items-center gap-3 mb-2">
+              <span className="text-xs font-semibold bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 px-2.5 py-1 rounded-lg">
+                {course.subject}
+              </span>
+              <span className="text-xs text-slate-500">Classes {course.grade}</span>
             </div>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">{course.title}</h1>
+            <p className="text-slate-400 text-lg leading-relaxed max-w-2xl">{course.description}</p>
+            <div className="flex flex-wrap gap-6 mt-4 text-sm">
+              <span className="text-slate-300">📚 <strong>{totalLessons}</strong> lessons</span>
+              <span className="text-slate-300">⏰ <strong>{course.totalDuration}</strong></span>
+              <span className="text-slate-300">⚡ <strong>{totalXp} XP</strong> to earn</span>
+              <span className="text-slate-300">🏆 <strong>{course.modules.length}</strong> modules</span>
+            </div>
+          </div>
+        </div>
 
-            <div className="mb-8">
-              <h2 className="text-xl font-bold text-white mb-3">What You Will Learn</h2>
-              <div className="grid md:grid-cols-2 gap-2">
-                {course.whatYouLearn.map((item, i) => (
-                  <div key={i} className="flex items-start gap-2 text-sm text-slate-300">
-                    <CheckCircle2 className="w-4 h-4 text-green-400 mt-0.5 shrink-0" />
-                    {item}
-                  </div>
+        <div className="mt-6">
+          <Link href={`/courses/${course.id}/lessons/${course.modules[0]?.lessons[0]?.id}`}
+            className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-6 py-3 rounded-xl transition-colors">
+            ▶ Start Learning
+          </Link>
+        </div>
+      </div>
+
+      {/* Modules & Lessons */}
+      <div className="px-6 md:px-12 py-8 max-w-4xl">
+        <h2 className="text-xl font-bold text-white mb-6">Course Content</h2>
+        <div className="space-y-6">
+          {course.modules.map((mod, mi) => (
+            <div key={mod.id} className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+              {/* Module Header */}
+              <div className="px-6 py-4 bg-white/5 border-b border-white/10">
+                <h3 className="text-white font-semibold">
+                  <span className="text-indigo-400 mr-2">Module {mi + 1}:</span>{mod.title}
+                </h3>
+                <p className="text-slate-400 text-sm mt-1">{mod.lessons.length} lessons</p>
+              </div>
+
+              {/* Lessons */}
+              <div className="divide-y divide-white/5">
+                {mod.lessons.map((lesson, li) => (
+                  <Link
+                    key={lesson.id}
+                    href={`/courses/${course.id}/lessons/${lesson.id}`}
+                    className="flex items-center gap-4 px-6 py-4 hover:bg-white/5 transition-colors group"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-sm font-bold text-slate-400 group-hover:bg-indigo-500/20 group-hover:text-indigo-400 flex-shrink-0">
+                      {li + 1}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-white font-medium group-hover:text-indigo-300 transition-colors truncate">
+                        {lesson.title}
+                      </p>
+                      <p className="text-slate-500 text-sm">{lesson.duration}</p>
+                    </div>
+                    <div className="flex items-center gap-3 flex-shrink-0">
+                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                        typeColors[lesson.type] || 'bg-white/10 text-slate-400'
+                      }`}>
+                        {typeIcons[lesson.type]} {lesson.type}
+                      </span>
+                      <span className="text-xs text-yellow-400 font-semibold">+{lesson.xp} XP</span>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>
-
-            <h2 className="text-2xl font-bold text-white mb-4">Curriculum</h2>
-            <div className="space-y-4">
-              {course.modules.map((mod) => (
-                <div key={mod.id} className="glass rounded-xl p-4">
-                  <h3 className="text-white font-semibold mb-3">Module {mod.id}: {mod.title}</h3>
-                  <div className="space-y-2">
-                    {mod.lessons.map((lesson) => (
-                      <Link
-                        key={lesson.id}
-                        href={`/courses/${course.id}/lessons/${lesson.id}`}
-                        className="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition group"
-                      >
-                        <div className="flex items-center gap-3">
-                          <span className="text-lg">{typeIcons[lesson.type]}</span>
-                          <div>
-                            <p className="text-sm text-white group-hover:text-indigo-300 transition">{lesson.title}</p>
-                            <p className="text-xs text-slate-500">{lesson.type} · {lesson.duration}</p>
-                          </div>
-                        </div>
-                        <span className="text-xs text-indigo-400 font-medium">+{lesson.xp} XP</span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="lg:col-span-1">
-            <div className="glass rounded-2xl p-6 sticky top-24">
-              <div className="h-40 rounded-xl bg-gradient-to-br from-indigo-600/30 to-purple-600/30 flex items-center justify-center mb-6">
-                <Play className="w-16 h-16 text-white/60" />
-              </div>
-              <Link href={`/courses/${course.id}/lessons/${allLessons[0]?.id}`} className="block w-full py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-white font-semibold transition mb-3 text-center">
-                Start Learning
-              </Link>
-              <div className="space-y-3 text-sm mt-4">
-                <div className="flex justify-between"><span className="text-slate-400">Instructor</span><span className="text-white">{course.instructor}</span></div>
-                <div className="flex justify-between"><span className="text-slate-400">Level</span><span className="text-white">{course.level}</span></div>
-                <div className="flex justify-between"><span className="text-slate-400">Lessons</span><span className="text-white">{allLessons.length}</span></div>
-                <div className="flex justify-between"><span className="text-slate-400">XP Reward</span><span className="text-indigo-400 font-medium">{totalXp} XP</span></div>
-              </div>
-              <div className="mt-6 p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20">
-                <div className="flex items-center gap-2 mb-2">
-                  <Brain className="w-5 h-5 text-indigo-400" />
-                  <span className="text-sm font-medium text-white">AI Tutor Available</span>
-                </div>
-                <p className="text-xs text-slate-400">Get personalized help and explanations from our AI assistant.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-12">
-          <h2 className="text-xl font-bold text-white mb-3">Requirements</h2>
-          <ul className="list-disc list-inside text-slate-400 text-sm space-y-1">
-            {course.requirements.map((req, i) => (
-              <li key={i}>{req}</li>
-            ))}
-          </ul>
+          ))}
         </div>
       </div>
     </main>
