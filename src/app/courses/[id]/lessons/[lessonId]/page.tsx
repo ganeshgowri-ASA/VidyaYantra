@@ -3,6 +3,8 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { getCourse, type Lesson, type QuizQuestion } from '@/lib/courseData'
+import { markLessonComplete } from '@/lib/progress'
+import AiTutor from '@/components/AiTutor'
 
 function QuizComponent({ questions }: { questions: QuizQuestion[] }) {
   const [current, setCurrent] = useState(0)
@@ -89,6 +91,7 @@ export default function LessonPage() {
   const course = getCourse(courseId)
   const [showHints, setShowHints] = useState(false)
   const [showSolution, setShowSolution] = useState(false)
+  const [completed, setCompleted] = useState(false)
 
   if (!course) return <div className="min-h-screen bg-slate-900 flex items-center justify-center text-white">Course not found</div>
 
@@ -105,6 +108,11 @@ export default function LessonPage() {
   const currentIdx = allLessons.findIndex(l => l.id === lessonId)
   const prevLesson = currentIdx > 0 ? allLessons[currentIdx - 1] : null
   const nextLesson = currentIdx < allLessons.length - 1 ? allLessons[currentIdx + 1] : null
+
+  const handleComplete = () => {
+    markLessonComplete(courseId, lessonId, lesson!.xp)
+    setCompleted(true)
+  }
 
   const typeIcons: Record<string, string> = { video: '▶️', reading: '📖', quiz: '❓', exercise: '💻', lab: '🧪' }
 
@@ -217,6 +225,16 @@ export default function LessonPage() {
           )}
         </div>
 
+        {!completed ? (
+          <button onClick={handleComplete} className="w-full mt-6 py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-xl text-lg transition-all">
+            ✅ Mark Complete & Earn {lesson.xp} XP
+          </button>
+        ) : (
+          <div className="w-full mt-6 py-3 bg-green-500/20 border border-green-500/40 text-green-300 font-bold rounded-xl text-lg text-center">
+            🎉 Lesson Complete! +{lesson.xp} XP Earned!
+          </div>
+        )}
+
         {/* Navigation */}
         <div className="flex items-center justify-between mt-10 pt-6 border-t border-white/10">
           {prevLesson ? (
@@ -236,6 +254,7 @@ export default function LessonPage() {
           )}
         </div>
       </div>
+      <AiTutor topic={lesson.title} />
     </main>
   )
 }
