@@ -146,7 +146,7 @@ export default async function CourseDetail({ params }: { params: Promise<{ id: s
                     {mod.lessons.map((lesson, li) => (
                       <Link
                         key={lesson.id}
-                        href={`/courses/${course.id}/lessons/${lesson.id}`}
+                        href={`/courses/${course.id}/${lesson.id}`}
                         className="flex items-center gap-4 px-6 py-4 hover:bg-white/5 transition-colors group"
                       >
                         <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-sm font-bold text-slate-400 group-hover:bg-indigo-500/20 group-hover:text-indigo-400 flex-shrink-0 transition-colors">
@@ -193,10 +193,17 @@ export default async function CourseDetail({ params }: { params: Promise<{ id: s
                   </div>
 
                   <Link
-                    href={`/courses/${course.id}/lessons/${course.modules[0]?.lessons[0]?.id}`}
+                    href={`/courses/${course.id}/${course.modules[0]?.lessons[0]?.id}`}
                     className="block w-full text-center bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 rounded-xl transition-all hover:shadow-lg hover:shadow-indigo-500/25"
                   >
                     ▶ Start Learning Now
+                  </Link>
+
+                  <Link
+                    href={`/quiz/${course.id}`}
+                    className="block w-full text-center bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-400 font-bold py-3 rounded-xl transition-all border border-yellow-500/20"
+                  >
+                    🧠 Take Course Quiz
                   </Link>
 
                   <div className="space-y-3 pt-4 border-t border-white/10">
